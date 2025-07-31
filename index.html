@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 제목 변경 및 카카오톡 SDK 위치 조정 -->
     <title>솔로몬의 선택: 내 연애 성향은 에겐? 테토?</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
@@ -29,7 +30,7 @@
             margin: 20px auto; /* 상하 마진 조정 */
             width: 420px;
             height: 420px;
-            overflow-y: auto; /* 내용이 넘칠 때 스크롤 */
+            overflow-y: hidden; /* 세로 스크롤 제거 */
             padding: 70px 20px 30px 20px;
             box-sizing: border-box;
             border-radius: 10px;
@@ -189,6 +190,42 @@
         .share-btn:hover {
             background-color: #5a6268;
         }
+
+        /* 결과 페이지 하단 추가 섹션 */
+        .apply-section {
+            margin-top: 25px; /* 상단 여백 */
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+        .apply-section p {
+            font-size: 12px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+        .apply-section a {
+            display: inline-block;
+            background-color: #e1326f; /* 신청하기 버튼 색상 */
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            text-decoration: none;
+            font-size: 13px;
+            margin-top: 5px;
+            transition: background-color 0.2s;
+        }
+        .apply-section a:hover {
+            background-color: #ff3c7e;
+        }
+
+        /* Made by */
+        .made-by {
+            font-size: 9px;
+            color: #ccc;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed #eee; /* 점선으로 구분 */
+        }
+
         /* 진행률 바 */
         .progress-container {
             width: 100%;
@@ -206,7 +243,7 @@
             transition: width 0.3s ease-in-out;
         }
 
-        /* 푸터 */
+        /* 푸터 (각 페이지 컨테이너 내) */
         footer {
             margin-top: auto; /* flex 컨테이너 내에서 맨 아래로 밀착 */
             padding-top: 15px; /* 상단 패딩 추가 */
@@ -264,6 +301,16 @@
             footer p { /* 모바일 푸터 내용 글씨 크기 */
                 font-size: 8px;
             }
+            .apply-section p {
+                font-size: 10px;
+            }
+            .apply-section a {
+                font-size: 11px;
+                padding: 6px 12px;
+            }
+            .made-by {
+                font-size: 8px;
+            }
         }
     </style>
 </head>
@@ -285,6 +332,7 @@
         </div>
         <!-- 인트로 페이지 푸터 내용 완전히 제거 -->
         <footer>
+            <!-- 굳이 넣을 내용이 없다면 비워두거나 작은 카피라이트 문구만 넣어도 됩니다. -->
         </footer>
     </div>
 
@@ -302,6 +350,7 @@
         </div>
         <!-- 질문 페이지 푸터 내용 완전히 제거 -->
         <footer>
+            <!-- 내용이 없는 푸터는 비워둡니다. -->
         </footer>
     </div>
 
@@ -309,13 +358,28 @@
     <div class="container" id="resultContainer">
         <div class="result-title" id="resultTitle"></div>
         <div class="result-description" id="resultDescription"></div>
-        <div class="share-container">
-            <button class="share-btn" id="shareKakao">카카오톡 공유</button>
-            <button class="share-btn" id="copyUrl">URL 복사</button>
+        
+        <!-- 내 결과 공유하기 버튼 -->
+        <button class="share-my-result-btn" id="shareMyResultBtn">내 결과 공유하기</button>
+        <!-- 공유 메뉴 (초기에는 숨겨짐) -->
+        <div class="share-container" id="shareOptionContainer" style="display: none;">
+            <button class="share-btn" id="copyUrl">링크 복사</button>
+            <button class="share-btn" id="shareKakao">카카오톡</button>
+            <button class="share-btn" id="shareFacebook">페이스북</button>
+            <button class="share-btn" id="shareLine">라인</button>
+            <button class="share-btn" id="shareX">X (트위터)</button>
         </div>
+        
         <button class="restart-btn" id="restartBtn">다시 테스트하기</button>
-        <!-- 결과 페이지 푸터 내용 완전히 제거 -->
+
+        <div class="apply-section">
+            <p>내 이상형을 만나고 싶다면?</p>
+            <p>성남시 청춘남녀 만남행사 'SOLO MON의 선택'에 참가하세요!</p>
+            <a href="https://www.seongnam.go.kr/apply/view.do?appIdx=2987&currentPage=1" target="_blank">행사 신청하러 가기</a>
+        </div>
+        <div class="made-by">Made by JINO</div>
         <footer>
+            <!-- 내용이 없는 푸터는 비워둡니다. -->
         </footer>
     </div>
 
@@ -333,8 +397,16 @@
         const resultTitle = document.getElementById('resultTitle');
         const resultDescription = document.getElementById('resultDescription');
         const restartBtn = document.getElementById('restartBtn');
-        const shareKakaoBtn = document.getElementById('shareKakao');
+        
+        // 공유 관련 버튼 및 컨테이너
+        const shareMyResultBtn = document.getElementById('shareMyResultBtn');
+        const shareOptionContainer = document.getElementById('shareOptionContainer');
         const copyUrlBtn = document.getElementById('copyUrl');
+        const shareKakaoBtn = document.getElementById('shareKakao');
+        const shareFacebookBtn = document.getElementById('shareFacebook');
+        const shareLineBtn = document.getElementById('shareLine');
+        const shareXBtn = document.getElementById('shareX');
+
 
         let currentQuestionIndex = 0;
         let userAnswers = []; // 사용자의 답변 (선택한 옵션의 type을 저장)
@@ -344,87 +416,87 @@
         // 질문 목록 (모두 포함되어 있습니다)
         const questions = [
             {
-                question: "1. 연인과 싸우다가 상대방이 '그때 그 파스타집에서 말이야...'라고 운을 띄웠을 때, 당신의 반응은?",
+                question: "1. 애인이 밤새 직접 만들었다며 삐뚤빼뚤한 코바늘 인형을 건넸을 때, 당신의 반응은?",
                 options: [
-                    { text: "흐읍... (아련) 그때 진짜 맛있었지... 그래서 뭘 말하고 싶었던 거야? 파스타가 죄야?", type: "egen" },
-                    { text: "잠깐. 파스타집은 지난주 화요일 7시 15분, 네가 '난 봉골레 매니아'라고 말한 그곳이 맞지? 이제 문제의 본질로 돌아오자.", type: "teto" }
+                    { text: "우와, 정말 대단하다! 이걸 만드느라 얼마나 고생했을까. 정성 담긴 마음에 감동했어. 정말 고마워!", type: "egen" },
+                    { text: "오, 직접 만들었어? 솜씨 좋은데! 그런데 이거... 완성하는 데 정확히 몇 시간 정도 걸렸어? 다음엔 뭘 만들 거야?", type: "teto" }
                 ]
             },
             {
                 question: "2. 친구가 대뜸 '야, 나 어제 인생 최대의 현타가 왔잖아!'라고 했을 때, 당신의 속마음은?",
                 options: [
-                    { text: "'현타가... 왔어? ㅠㅠ 무슨 일이야... 어쩌다... 내가 안아줄게, 엉엉...'", type: "egen" },
-                    { text: "'현실 자각 타임. 원인 분석이 필요해. 주식인가? 연애인가? 재정 상태인가?'", type: "teto" }
+                    { text: "무슨 일이야? 괜찮아? 내가 지금 네 옆에 있으니까 뭐든 이야기해도 돼.", type: "egen" },
+                    { text: "현타가 왔다면 분명 원인이 있을 텐데. 내가 도울 수 있는 문제인가? 어떤 부분에서 스트레스를 받고 있어?", type: "teto" }
                 ]
             },
             {
                 question: "3. 데이트 중 로맨틱 코미디 영화를 보다가 주인공이 이별하는 장면에서 당신의 모습은?",
                 options: [
-                    { text: "으어어어엉! 흐엉... (휴지를 찾아 헤매며) 저 둘은 이어져야 했어! 이건 슬픈 새드엔딩이야! 엉엉엉!", type: "egen" },
-                    { text: "감독의 의도는 저 둘의 관계성보다 개인의 성장 서사에 초점을 둔 것 같군. 감정 과잉은 지양하자.", type: "teto" }
+                    { text: "아... 너무 안됐다. 내가 다 마음이 아프네. 그래도 혹시 이별 후 더 성장하는 계기가 될까?", type: "egen" },
+                    { text: "음... 이별은 개연성이 있었던 것 같아. 이미 빌드업이 있었고, 각자의 길이 맞는 결론이지 않을까? 감정 소모는 최소화하는 게 합리적이야.", type: "teto" }
                 ]
             },
             {
                 question: "4. 애인이 갑자기 '자기야, 나 요즘 살찐 것 같아...'라고 걱정스럽게 말했을 때, 당신의 필살기는?",
                 options: [
-                    { text: "어딜 봐! 우리 자기 여전히 세상에서 제일 예쁘고 멋있고... 완벽해! 그냥 사랑스럽게 봐줄래?", type: "egen" },
-                    { text: "몸무게, 인바디 지표 변화를 먼저 확인해보자. 주 3회 운동 루틴을 추가하고 식단을 바꿔보는 게 어때?", type: "teto" }
+                    { text: "에이, 무슨 소리야! 내 눈에는 항상 멋지고 예쁜데! 그런 생각 하지도 마. 사랑스러워 죽겠구만!", type: "egen" },
+                    { text: "자기만 그런 생각을 하는 건 아니야. 요즘 식단이 좀 불규칙했지? 같이 운동하거나 식단 조절해볼까? 해결책을 찾아야지.", type: "teto" }
                 ]
             },
             {
                 question: "5. 주말 아침, 애인이 '오늘 뭐 할까?'라고 물어봤을 때, 당신의 머릿속 시뮬레이션은?",
                 options: [
-                    { text: "'음... 어제 본 영화 감상평을 나누며 따뜻한 라떼를 마시고... 저녁엔 예쁜 야경을 보면서 손 잡고 걷고...'", type: "egen" },
-                    { text: "'1안: 전시회 -> 맛집 탐방. 2안: 액티비티 -> 저녁. 3안: 집에서 휴식. 장단점 분석 후 결정하자.'", type: "teto" }
+                    { text: "갑자기 물어보네? 음... 날씨도 좋고, 애인이 뭘 좋아할지 기분 맞춰서 유동적으로 정해볼까? 소소한 재미를 찾아봐야겠다.", type: "egen" },
+                    { text: "예상치 못한 질문이군. 오늘 스케줄 리스트에서 우선순위를 정하고, 효율적으로 보낼 수 있는 활동들을 추려봐야겠어.", type: "teto" }
                 ]
             },
             {
                 question: "6. 친구와 싸우고 화해하려 할 때, 가장 먼저 하는 생각은?",
                 options: [
-                    { text: "'그 애가 너무 속상했겠지? 내 말이 좀 심했나? ㅠㅠ 편지라도 쓸까? 눈물로 사죄해야지!'", type: "egen" },
-                    { text: "'누가 잘못했는지 팩트 확인이 먼저다. 문제의 원인을 파악하고 재발 방지 대책을 강구해야 해.'", type: "teto" }
+                    { text: "친구가 얼마나 서운했을까... 내 말실수가 있었는지 다시 곱씹어보고, 어떤 말로 먼저 사과할지 생각해야겠다.", type: "egen" },
+                    { text: "무엇 때문에 싸우게 되었는지 원인을 먼저 분석하고, 다시는 같은 문제로 싸우지 않도록 해결 방안을 모색해야겠다.", type: "teto" }
                 ]
             },
             {
                 question: "7. 애인이 데이트 룩으로 평소 입지 않던 과감한 의상을 입고 왔을 때, 당신의 반응은?",
                 options: [
-                    { text: "헉... 자기야...! 완전 섹시... (두근) 오늘 내 심장 괜찮겠어...? 너무 멋있어서 심장이 남아나질 않겠어!", type: "egen" },
-                    { text: "소재의 질감과 컬러 조합이 인상적이군. 전반적인 핏은 괜찮으나, 저 액세서리는 과한 감이 없지 않아. 착용 목적은 무엇이지?", type: "teto" }
+                    { text: "헐, 자기야! 오늘 컨셉 완전히 바뀌었네? 와, 새롭다! 뭔가 다른 사람 만난 것 같고, 엄청 매력적이야!", type: "egen" },
+                    { text: "오, 스타일이 바뀌었군. 이런 색감이나 핏은 새로운 시도인 것 같아. 어떤 변화를 주고 싶었던 거야? 잘 어울려.", type: "teto" }
                 ]
             },
             {
                 question: "8. 당신은 모임의 총무를 맡았다. 정산 중 138,500원이 남았는데, 남은 돈 처리에 대한 당신의 생각은?",
                 options: [
-                    { text: "어머! 이걸로 우리 다 같이 예쁜 커피 마시면서 덕담이나 나눌까? 아니면 불우이웃을 돕는 데 쓸까? 마음이 따뜻해진다...", type: "egen" },
-                    { text: "138,500원. n분의 1하면 정확히 떨어지지 않는군. 이 금액으로 다음 모임에서 추가 비용을 충당하거나, 회비에서 제하는 방식으로 이월하는 것이 가장 효율적이다.", type: "teto" }
+                    { text: "애매한 금액이 남았네. 총무로서 감사의 의미로 맛있는 커피라도 한 잔씩 돌리거나, 따뜻한 마음으로 소액 기부를 해볼까?", type: "egen" },
+                    { text: "오차가 발생했나? 금액 사용처를 다시 검토하고, 남은 돈은 다음 회비에서 공제하거나 비상금으로 관리하는 게 좋겠어.", type: "teto" }
                 ]
             },
             {
                 question: "9. 새로운 챌린지를 시작했는데, 생각보다 너무 힘들 때, 당신의 행동은?",
                 options: [
-                    { text: "흑흑... 너무 힘들어... 포기할까? 그래도 조금만 더 해볼까? 옆에서 누가 '잘한다!' 응원해 주면 좋겠다... ㅠㅠ", type: "egen" },
-                    { text: "현재 효율 50%. 목표 달성을 위해선 부족해. 시간 배분과 리소스 재분배가 시급하다. 계획을 재조정한다.", type: "teto" }
+                    { text: "하... 너무 힘드네. 그래도 나를 응원하는 사람들이 있으니 포기하지 말고 조금만 더 힘내 볼까? 스스로에게 격려가 필요해.", type: "egen" },
+                    { text: "지금 효율이 너무 낮아. 이대로는 목표 달성이 어렵겠군. 현재까지의 데이터를 분석해서 전략을 재수정하거나 도움을 요청해야겠다.", type: "teto" }
                 ]
             },
             {
                 question: "10. 친구와 단둘이 해외여행을 간다! 숙소를 고를 때, 당신의 최우선 고려사항은?",
                 options: [
-                    { text: "침구가 보송보송하고, 아늑한 분위기에, 창밖으로 예쁜 풍경이 보이고... 아, 감성적인 공간이어야 해!", type: "egen" },
-                    { text: "조식 포함 여부, 교통 편의성, 환승 횟수, 주변 편의시설과의 거리, 가격 대비 가성비를 비교하여 최적의 선택을 한다.", type: "teto" }
+                    { text: "일단 숙소 사진부터 볼까? 뭔가 로맨틱하고 아늑한 분위기에, 예쁜 야경을 볼 수 있는 곳이면 좋겠다! 인생샷 건져야지!", type: "egen" },
+                    { text: "숙소 위치와 교통 편의성이 가장 중요해. 이동 시간을 최소화하고, 주변 맛집이나 관광지와의 동선을 최적화할 수 있는 곳으로 골라야지.", type: "teto" }
                 ]
             },
             {
                 question: "11. 애인이 당신을 위한 깜짝 이벤트를 준비했다. 하지만 당신의 촉은 왠지 모르게 불길하다. 그 이유는?",
                 options: [
-                    { text: "'아... 왠지 저번처럼 삑사리 나서 나 혼자 감동 먹다 혼자 민망해지는 건 아니겠지? 흑흑... 하지만 그래도 예쁜 마음씨니까 괜찮아!'", type: "egen" },
-                    { text: "'일주일 전부터 평소와 다른 패턴의 움직임이 감지됐다. CCTV 분석 결과 특정 쇼핑몰 방문 횟수 증가, 비밀 통화 횟수 증가. 현재 87% 확률로 이벤트 예측.'", type: "teto" }
+                    { text: "음... 뭔가 어설픈데? 혹시 실패할까 봐 내가 더 불안하네. 그래도 기뻐해 줘야지. 아는 척 하지 말자.", type: "egen" },
+                    { text: "평소 행동 패턴에서 벗어나는 이상 징후가 포착됐어. 분명 이벤트를 기획하고 있을 텐데, 어떤 목표를 가지고 있는지 예측해봐야겠군.", type: "teto" }
                 ]
             },
             {
                 question: "12. 길을 걷다 어딘가에 홀린 듯 비틀거리는 친구를 발견했다. 당신의 외침은?",
                 options: [
-                    { text: "ㅇ...야... 괜찮아? ㅠㅠ 너 혹시... 사랑에 빠졌니?!!! (감격) 축하해! 누가 그 운명의 상대야?!", type: "egen" },
-                    { text: "수분 섭치 부족 또는 혈당 저하. 즉시 편의점에서 이온 음료와 초콜릿을 구매해야 한다. 동선은 이쪽이 최단거리다.", type: "teto" }
+                    { text: "야! 너 괜찮아? 넋이 나간 것 같은데... 무슨 일 있어? 내가 옆에 있어줄게, 말해봐.", type: "egen" },
+                    { text: "친구, 정신 차려! 지금 너의 현재 상태가 매우 불안정해 보여. 주변에 위험 요소는 없는지 확인하고, 일단 안전한 곳으로 이동하자.", type: "teto" }
                 ]
             }
         ];
@@ -463,18 +535,18 @@
 
         // 새로 추가된 '솔로몬의 선택' 행사 설명 문장 배열
         const eventDescriptions = [
-            '‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
-            '이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
-            '누적 커플 수는 3년간 398쌍에 달한다.',
-            '참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
-            '뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
-            'KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
-            '로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
-            '평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
-            '다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
-            '실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
-            '신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
-            '‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
+            '📌‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
+            '📌이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
+            '📌누적 커플 수는 3년간 398쌍에 달한다.',
+            '📌참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
+            '📌뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
+            '📌KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
+            '📌로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
+            '📌평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
+            '📌다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
+            '📌실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
+            '📌신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
+            '📌‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
         ];
 
         // JS 로직
@@ -484,6 +556,8 @@
             userAnswers = [];
             egenScore = 0;
             tetoScore = 0;
+            shareOptionContainer.style.display = 'none'; // 공유 옵션 숨기기
+            shareMyResultBtn.style.display = 'block'; // '내 결과 공유하기' 버튼 다시 표시
             resultSection.style.display = 'none';
             introSection.style.display = 'flex'; /* flexbox로 변경 */
             progressBar.style.width = '0%'; // 프로그레스 바 초기화
@@ -530,12 +604,14 @@
 
             const eventDescParagraph = document.createElement('p');
             eventDescParagraph.classList.add('event-description-text');
-            if (eventDescriptions[currentQuestionIndex]) {
+            // 문항 개수가 설명 개수보다 많을 경우 (예: 질문 12개, 설명 12개일 때)
+            // 인덱스를 활용하여 매칭되는 설명이 있으면 표시
+            if (eventDescriptions[currentQuestionIndex] && currentQuestionIndex < questions.length) {
                 eventDescParagraph.textContent = eventDescriptions[currentQuestionIndex];
+                // optionsContainer의 부모(questionContainer)에, optionsContainer 다음에 삽입
+                optionsContainer.parentNode.insertBefore(eventDescParagraph, optionsContainer.nextElementSibling);
             }
-            // optionsContainer의 부모(questionContainer)에, optionsContainer 다음에 삽입
-            optionsContainer.parentNode.insertBefore(eventDescParagraph, optionsContainer.nextElementSibling);
-
+            
             updateNavigationButtons();
             updateProgressBar();
             questionSection.scrollTop = 0; // 질문 변경 시 스크롤 상단으로 이동
@@ -647,6 +723,11 @@
 
         restartBtn.addEventListener('click', restartTest);
 
+        // '내 결과 공유하기' 버튼 클릭 시 공유 옵션 표시/숨기기
+        shareMyResultBtn.addEventListener('click', () => {
+            shareOptionContainer.style.display = (shareOptionContainer.style.display === 'none' || shareOptionContainer.style.display === '') ? 'flex' : 'none';
+        });
+
         // 카카오톡 공유 기능
         shareKakaoBtn.addEventListener('click', () => {
             if (!Kakao.isInitialized()) {
@@ -688,6 +769,37 @@
             document.execCommand('copy');
             document.body.removeChild(el);
             alert('테스트 URL이 복사되었습니다!');
+        });
+
+        // Facebook 공유
+        shareFacebookBtn.addEventListener('click', () => {
+            const currentResult = results[getCalculatedResultKey()];
+            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(`[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}`)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        });
+
+        // LINE 공유 (URL Scheme 방식)
+        shareLineBtn.addEventListener('click', () => {
+            const currentResult = results[getCalculatedResultKey()];
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n${window.location.href}`;
+            const shareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(shareText)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        });
+
+        // X (Twitter) 공유
+        shareXBtn.addEventListener('click', () => {
+            const currentResult = results[getCalculatedResultKey()];
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title} - ${currentResult.description}`;
+            const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`;
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        });
+
+        // 페이지 로드 시 초기화
+        window.addEventListener('load', () => {
+            // 모든 .container 요소를 초기에 숨깁니다 (JavaScript가 제어)
+            document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
+            // 인트로 섹션만 보이게 합니다.
+            introSection.style.display = 'flex';
         });
     </script>
 </body>
