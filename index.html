@@ -42,7 +42,7 @@
             align-items: center;
             position: relative;
         }
-        /* 페이지 제목 스타일 (컨테이너 외부 상단 고정) */
+        /* 페이지 제목 스타일 */
         .page-title {
             position: absolute;
             top: 20px;
@@ -60,7 +60,7 @@
 
         /* 인트로 화면 */
         #intro {
-            display: flex; /* 초기에는 인트로 화면을 표시 */
+            display: flex;
         }
         h1 {
             font-size: 18px;
@@ -76,7 +76,7 @@
         /* 질문 화면 */
         .question-container {
             text-align: left;
-            padding-top: 50px; /* 상단 고정 제목과 겹치지 않도록 여백 */
+            padding-top: 50px;
         }
         .question {
             font-size: 18px;
@@ -93,7 +93,7 @@
             border-radius: 5px;
             padding: 10px 15px;
             margin-bottom: 8px;
-            font-size: 13px;
+            font-size: 15px; /* 글씨 크기 키움 */
             cursor: pointer;
             transition: background-color 0.2s, transform 0.1s;
         }
@@ -142,13 +142,13 @@
 
         /* 결과 화면 */
         .result-title {
-            font-size: 18px;
+            font-size: 22px; /* 글씨 크기 키움 */
             font-weight: bold;
             margin-bottom: 15px;
             color: #e1326f;
         }
         .result-description {
-            font-size: 13px;
+            font-size: 15px; /* 글씨 크기 키움 */
             line-height: 1.5;
             margin-bottom: 20px;
             text-align: center;
@@ -170,7 +170,7 @@
             text-align: center;
         }
 
-        /* 결과 페이지 버튼 나란히 배치 (공유/재시작) */
+        /* 결과 페이지 버튼 나란히 배치 */
         .button-container {
             display: flex;
             justify-content: center;
@@ -178,7 +178,7 @@
             margin: 15px 0;
         }
 
-        /* 공유 옵션 메뉴 (초기 숨김) */
+        /* 공유 옵션 메뉴 */
         .share-container {
             margin-top: 10px;
             display: flex;
@@ -195,7 +195,7 @@
             font-size: 11px;
             padding: 6px 10px;
             border-radius: 15px;
-            background-color: #6c757d; /* 공유 버튼 색상 */
+            background-color: #6c757d;
         }
         .share-btn:hover {
             background-color: #5a6268;
@@ -208,18 +208,18 @@
             border-top: 1px solid #eee;
         }
         .apply-section p {
-            font-size: 12px;
+            font-size: 14px; /* 글씨 크기 키움 */
             line-height: 1.5;
             margin-bottom: 10px;
         }
         .apply-section a {
             display: inline-block;
-            background-color: #e1326f; /* 신청하기 버튼 색상 */
+            background-color: #e1326f;
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
             text-decoration: none;
-            font-size: 13px;
+            font-size: 15px; /* 글씨 크기 키움 */
             margin-top: 5px;
             transition: background-color 0.2s;
         }
@@ -227,27 +227,44 @@
             background-color: #ff3c7e;
         }
 
-        /* Made by JINO */
+        /* Made by */
         .made-by {
             font-size: 9px;
             color: #ccc;
             margin-top: 15px;
             padding-top: 10px;
-            border-top: 1px dashed #eee; /* 점선 구분선 */
+            border-top: 1px dashed #eee;
+        }
+
+        /* 진행률 바 */
+        .progress-container {
+            width: 100%;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            height: 8px;
+            margin-bottom: 15px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background-color: #ff1493;
+            border-radius: 5px;
+            transition: width 0.3s ease-in-out;
         }
 
         /* 모바일 반응형 */
-        @media (max-width: 450px) { /* 420px 컨테이너에 맞춰 미디어 쿼리 조정 */
+        @media (max-width: 450px) {
             body {
                 padding: 10px;
             }
             .container {
-                width: 95vw; /* 화면 너비의 95% 사용 */
-                height: auto; /* 모바일에서는 높이 자동 조정으로 변경 */
-                min-height: 95vw; /* 너비에 맞춘 최소 정사각형 */
-                max-height: 600px; /* 컨텐츠 많을 때 스크롤되도록 최대 높이 제한 */
+                width: 95vw;
+                height: auto;
+                min-height: 95vw;
+                max-height: 600px;
                 margin: 0 auto;
-                padding: 50px 15px 20px 15px; /* 패딩 조정 */
+                padding: 50px 15px 20px 15px;
             }
             .page-title {
                 font-size: 14px;
@@ -262,24 +279,24 @@
                 font-size: 15px;
             }
             .option {
-                font-size: 12px;
+                font-size: 14px; /* 모바일에서도 선택 문항 글씨 크기 유지 */
                 padding: 8px 12px;
             }
             .result-title {
-                font-size: 16px;
+                font-size: 20px; /* 모바일에서도 결과 제목 글씨 크기 유지 */
             }
             .result-description {
-                font-size: 12px;
+                font-size: 14px; /* 모바일에서도 결과 설명 글씨 크기 유지 */
             }
             .share-btn, .restart-btn, button {
                 font-size: 12px;
                 padding: 6px 10px;
             }
             .apply-section p {
-                font-size: 10px;
+                font-size: 13px; /* 모바일에서도 신청 문구 글씨 크기 유지 */
             }
             .apply-section a {
-                font-size: 11px;
+                font-size: 13px;
                 padding: 6px 12px;
             }
             .made-by {
@@ -289,13 +306,13 @@
     </style>
 </head>
 <body>
-    <!-- 상단 페이지 제목 (컨테이너 외부에 고정) -->
+    <!-- 상단 페이지 제목 -->
     <div class="page-title">솔로몬의 선택: 내 연애 성향은 에겐? 테토?</div>
 
     <!-- 인트로 화면 -->
     <div class="container" id="intro">
-        <h1>솔로몬의 선택 💘: 내 연애 성향은 에겐? 테토?</h1>
-        <p>이 테스트는 당신 안의 <strong>에겐</strong>과 <strong>테토</strong> 비율을 알아보는 연애 성향 분석입니다.</p>
+        <h1>솔로몬의 선택 EMOJI_0</h1>
+        <p>이 테스트는 당신 안의 <strong>에겐(감성/공감 특성)</strong>과 <strong>테토(논리/이성 특성)</strong> 비율을 알아보는 유머러스한 분석입니다.</p>
         <p>사랑 앞에서 내가 왜 이러지? 궁금했다면, 이제 알아볼 시간!</p>
         <p><strong>12가지 문항</strong>에 솔직하게 답하고, 당신의 연애 성향 타입을 확인해보세요.</p>
         <button class="start-btn" id="startBtn">테스트 시작하기</button>
@@ -370,7 +387,7 @@
         const shareKakaoBtn = document.getElementById('shareKakao');
         const shareFacebookBtn = document.getElementById('shareFacebook');
         const shareLineBtn = document.getElementById('shareLine');
-        const shareXBtn = document = document.getElementById('shareX');
+        const shareXBtn = document.getElementById('shareX');
 
 
         let currentQuestionIndex = 0;
@@ -381,87 +398,87 @@
         // 질문 목록 (아리까리 버전 12개)
         const questions = [
             {
-                question: "1. 애인이 밤새 직접 만들었다며 삐뚤빼뚤한 코바늘 인형을 <br> 건넸을 때, 당신의 반응은?",
+                question: "1. 애인이 밤새 직접 만들었다며 삐뚤빼뚤한 코바늘 인형을 건넸을 때, 당신의 반응은?",
                 options: [
-                    { text: "우와, 정말 대단하다! 이걸 만드느라 얼마나 고생했을까. <br> 정성 담긴 마음에 감동했어. 정말 고마워!", type: "egen" },
-                    { text: "오, 직접 만들었어? 솜씨 좋은데! 그런데 이거... <br> 완성하는 데 정확히 몇 시간 정도 걸렸어? 다음엔 뭘 만들 거야?", type: "teto" }
+                    { text: "우와, 정말 대단하다! 이걸 만드느라 얼마나 고생했을까. 정성 담긴 마음에 감동했어. 정말 고마워!", type: "egen" },
+                    { text: "오, 직접 만들었어? 솜씨 좋은데! 그런데 이거... 완성하는 데 정확히 몇 시간 정도 걸렸어? 다음엔 뭘 만들 거야?", type: "teto" }
                 ]
             },
             {
-                question: "2. 친구가 대뜸 '야, 나 어제 인생 최대의 현타가 왔잖아!'라고 <br> 했을 때, 당신의 속마음은?",
+                question: "2. 친구가 대뜸 '야, 나 어제 인생 최대의 현타가 왔잖아!'라고 했을 때, 당신의 속마음은?",
                 options: [
-                    { text: "무슨 일이야? 괜찮아? <br> 내가 지금 네 옆에 있으니까 뭐든 이야기해도 돼.", type: "egen" },
-                    { text: "현타가 왔다면 분명 원인이 있을 텐데. 내가 도울 수 있는 문제인가? <br> 어떤 부분에서 스트레스를 받고 있어?", type: "teto" }
+                    { text: "무슨 일이야? 괜찮아? 내가 지금 네 옆에 있으니까 뭐든 이야기해도 돼.", type: "egen" },
+                    { text: "현타가 왔다면 분명 원인이 있을 텐데. 내가 도울 수 있는 문제인가? 어떤 부분에서 스트레스를 받고 있어?", type: "teto" }
                 ]
             },
             {
-                question: "3. 데이트 중 로맨틱 코미디 영화를 보다가<br> 주인공이 이별하는 장면에서 당신의 모습은?",
+                question: "3. 데이트 중 로맨틱 코미디 영화를 보다가 주인공이 이별하는 장면에서 당신의 모습은?",
                 options: [
-                    { text: "아... 너무 안됐다. 내가 다 마음이 아프네. <br>그래도 혹시 이별 후 더 성장하는 계기가 될까?", type: "egen" },
+                    { text: "아... 너무 안됐다. 내가 다 마음이 아프네. 그래도 혹시 이별 후 더 성장하는 계기가 될까?", type: "egen" },
                     { text: "음... 이별은 개연성이 있었던 것 같아. 이미 빌드업이 있었고, 각자의 길이 맞는 결론이지 않을까? 감정 소모는 최소화하는 게 합리적이야.", type: "teto" }
                 ]
             },
             {
-                question: "4. 애인이 갑자기 '자기야, 나 요즘 살찐 것 같아...'라고<br> 걱정스럽게 말했을 때, 당신의 필살기는?",
+                question: "4. 애인이 갑자기 '자기야, 나 요즘 살찐 것 같아...'라고 걱정스럽게 말했을 때, 당신의 필살기는?",
                 options: [
-                    { text: "에이, 무슨 소리야! 내 눈에는 항상 멋지고 예쁜데! <br>그런 생각 하지도 마. 사랑스러워 죽겠구만!", type: "egen" },
-                    { text: "자기만 그런 생각을 하는 건 아니야. 요즘 식단이 좀 불규칙했지? <br>같이 운동하거나 식단 조절해볼까? 해결책을 찾아야지.", type: "teto" }
+                    { text: "에이, 무슨 소리야! 내 눈에는 항상 멋지고 예쁜데! 그런 생각 하지도 마. 사랑스러워 죽겠구만!", type: "egen" },
+                    { text: "자기만 그런 생각을 하는 건 아니야. 요즘 식단이 좀 불규칙했지? 같이 운동하거나 식단 조절해볼까? 해결책을 찾아야지.", type: "teto" }
                 ]
             },
             {
-                question: "5. 주말 아침, 애인이 '오늘 뭐 할까?'라고 물어봤을 때, <br>당신의 머릿속 시뮬레이션은?",
+                question: "5. 주말 아침, 애인이 '오늘 뭐 할까?'라고 물어봤을 때, 당신의 머릿속 시뮬레이션은?",
                 options: [
-                    { text: "갑자기 물어보네? 음... 날씨도 좋고, 애인이 뭘 좋아할지 기분 맞춰서 <br>유동적으로 정해볼까? 소소한 재미를 찾아봐야겠다.", type: "egen" },
-                    { text: "예상치 못한 질문이군. 오늘 스케줄 리스트에서 우선순위를 정하고, <br>효율적으로 보낼 수 있는 활동들을 추려봐야겠어.", type: "teto" }
+                    { text: "갑자기 물어보네? 음... 날씨도 좋고, 애인이 뭘 좋아할지 기분 맞춰서 유동적으로 정해볼까? 소소한 재미를 찾아봐야겠다.", type: "egen" },
+                    { text: "예상치 못한 질문이군. 오늘 스케줄 리스트에서 우선순위를 정하고, 효율적으로 보낼 수 있는 활동들을 추려봐야겠어.", type: "teto" }
                 ]
             },
             {
                 question: "6. 친구와 싸우고 화해하려 할 때, 가장 먼저 하는 생각은?",
                 options: [
-                    { text: "친구가 얼마나 서운했을까... 내 말실수가 있었는지 다시 곱씹어보고, <br>어떤 말로 먼저 사과할지 생각해야겠다.", type: "egen" },
-                    { text: "무엇 때문에 싸우게 되었는지 원인을 먼저 분석하고, <br>다시는 같은 문제로 싸우지 않도록 해결 방안을 모색해야겠다.", type: "teto" }
+                    { text: "친구가 얼마나 서운했을까... 내 말실수가 있었는지 다시 곱씹어보고, 어떤 말로 먼저 사과할지 생각해야겠다.", type: "egen" },
+                    { text: "무엇 때문에 싸우게 되었는지 원인을 먼저 분석하고, 다시는 같은 문제로 싸우지 않도록 해결 방안을 모색해야겠다.", type: "teto" }
                 ]
             },
             {
-                question: "7. 애인이 데이트 룩으로 평소 입지 않던 <br>과감한 의상을 입고 왔을 때, 당신의 반응은?",
+                question: "7. 애인이 데이트 룩으로 평소 입지 않던 과감한 의상을 입고 왔을 때, 당신의 반응은?",
                 options: [
-                    { text: "헐, 자기야! 오늘 컨셉 완전히 바뀌었네? 와, 새롭다! <br>뭔가 다른 사람 만난 것 같고, 엄청 매력적이야!", type: "egen" },
-                    { text: "오, 스타일이 바뀌었군. 이런 색감이나 핏은 새로운 시도인 것 같아. <br>어떤 변화를 주고 싶었던 거야? 잘 어울려.", type: "teto" }
+                    { text: "헐, 자기야! 오늘 컨셉 완전히 바뀌었네? 와, 새롭다! 뭔가 다른 사람 만난 것 같고, 엄청 매력적이야!", type: "egen" },
+                    { text: "오, 스타일이 바뀌었군. 이런 색감이나 핏은 새로운 시도인 것 같아. 어떤 변화를 주고 싶었던 거야? 잘 어울려.", type: "teto" }
                 ]
             },
             {
-                question: "8. 당신은 모임의 총무를 맡았다. 정산 중 38,500원이 남았는데, <br>남은 돈 처리에 대한 당신의 생각은?",
+                question: "8. 당신은 모임의 총무를 맡았다. 정산 중 138,500원이 남았는데, 남은 돈 처리에 대한 당신의 생각은?",
                 options: [
-                    { text: "애매한 금액이 남았네. 총무로서 맛있는 커피라도 한 잔씩 돌리거나, <br>따뜻한 마음으로 소액 기부를 해볼까?", type: "egen" },
-                    { text: "오차가 발생했나? 금액 사용처를 다시 검토하고, <br>남은 돈은 다음 회비에서 공제하거나 비상금으로 관리하는 게 좋겠어.", type: "teto" }
+                    { text: "애매한 금액이 남았네. 총무로서 감사의 의미로 맛있는 커피라도 한 잔씩 돌리거나, 따뜻한 마음으로 소액 기부를 해볼까?", type: "egen" },
+                    { text: "오차가 발생했나? 금액 사용처를 다시 검토하고, 남은 돈은 다음 회비에서 공제하거나 비상금으로 관리하는 게 좋겠어.", type: "teto" }
                 ]
             },
             {
-                question: "9. 새로운 챌린지를 시작했는데, 생각보다 너무 힘들 때, <br>당신의 행동은?",
+                question: "9. 새로운 챌린지를 시작했는데, 생각보다 너무 힘들 때, 당신의 행동은?",
                 options: [
-                    { text: "하... 너무 힘드네. 그래도 나를 응원하는 사람들이 있으니 <br>포기하지 말고 조금만 더 힘내 볼까? 스스로에게 격려가 필요해.", type: "egen" },
-                    { text: "지금 효율이 너무 낮아. 이대로는 목표 달성이 어렵겠군. <br>현재까지의 데이터를 분석해서 전략을 재수정하거나 도움을 요청해야겠다.", type: "teto" }
+                    { text: "하... 너무 힘드네. 그래도 나를 응원하는 사람들이 있으니 포기하지 말고 조금만 더 힘내 볼까? 스스로에게 격려가 필요해.", type: "egen" },
+                    { text: "지금 효율이 너무 낮아. 이대로는 목표 달성이 어렵겠군. 현재까지의 데이터를 분석해서 전략을 재수정하거나 도움을 요청해야겠다.", type: "teto" }
                 ]
             },
             {
-                question: "10. 친구와 단둘이 해외여행을 간다! 숙소를 고를 때, <br>당신의 최우선 고려사항은?",
+                question: "10. 친구와 단둘이 해외여행을 간다! 숙소를 고를 때, 당신의 최우선 고려사항은?",
                 options: [
-                    { text: "일단 숙소 사진부터 볼까? 뭔가 로맨틱하고 아늑한 분위기에, <br>예쁜 야경을 볼 수 있는 곳이면 좋겠다! 인생샷 건져야지!", type: "egen" },
-                    { text: "숙소 위치와 교통 편의성이 가장 중요해. 이동 시간을 최소화하고, <br>주변 맛집이나 관광지와의 동선을 최적화할 수 있는 곳으로 골라야지.", type: "teto" }
+                    { text: "일단 숙소 사진부터 볼까? 뭔가 로맨틱하고 아늑한 분위기에, 예쁜 야경을 볼 수 있는 곳이면 좋겠다! 인생샷 건져야지!", type: "egen" },
+                    { text: "숙소 위치와 교통 편의성이 가장 중요해. 이동 시간을 최소화하고, 주변 맛집이나 관광지와의 동선을 최적화할 수 있는 곳으로 골라야지.", type: "teto" }
                 ]
             },
             {
-                question: "11. 애인이 당신을 위한 깜짝 이벤트를 준비했다. <br>하지만 당신의 촉은 왠지 모르게 불길하다. 그 이유는?",
+                question: "11. 애인이 당신을 위한 깜짝 이벤트를 준비했다. 하지만 당신의 촉은 왠지 모르게 불길하다. 그 이유는?",
                 options: [
-                    { text: "음... 뭔가 어설픈데? 혹시 실패할까 봐 내가 더 불안하네. <br>그래도 기뻐해 줘야지. 아는 척 하지 말자.", type: "egen" },
-                    { text: "평소 행동 패턴에서 벗어나는 이상 징후가 포착됐어. <br>분명 이벤트를 기획하고 있을 텐데, 어떤 목표를 가지고 있는지 예측해봐야겠군.", type: "teto" }
+                    { text: "음... 뭔가 어설픈데? 혹시 실패할까 봐 내가 더 불안하네. 그래도 기뻐해 줘야지. 아는 척 하지 말자.", type: "egen" },
+                    { text: "평소 행동 패턴에서 벗어나는 이상 징후가 포착됐어. 분명 이벤트를 기획하고 있을 텐데, 어떤 목표를 가지고 있는지 예측해봐야겠군.", type: "teto" }
                 ]
             },
             {
                 question: "12. 길을 걷다 어딘가에 홀린 듯 비틀거리는 친구를 발견했다. 당신의 외침은?",
                 options: [
-                    { text: "야! 너 괜찮아? 넋이 나간 것 같은데... 무슨 일 있어? <br>내가 옆에 있어줄게, 말해봐.", type: "egen" },
-                    { text: "친구, 정신 차려! 지금 너의 현재 상태가 매우 불안정해 보여. <br>주변에 위험 요소는 없는지 확인하고, 일단 안전한 곳으로 이동하자.", type: "teto" }
+                    { text: "야! 너 괜찮아? 넋이 나간 것 같은데... 무슨 일 있어? 내가 옆에 있어줄게, 말해봐.", type: "egen" },
+                    { text: "친구, 정신 차려! 지금 너의 현재 상태가 매우 불안정해 보여. 주변에 위험 요소는 없는지 확인하고, 일단 안전한 곳으로 이동하자.", type: "teto" }
                 ]
             }
         ];
@@ -469,11 +486,11 @@
         // 결과 정의 (호호님과 논의했던 결과들 모두 포함)
         const results = {
             'egen_pure': {
-                title: "감성 과몰입형 '촉촉한 눈망울' 에겐 💧",
+                title: "감성 과몰입형 '촉촉한 눈망울' 에겐 EMOJI_1",
                 description: "이 세상 감성은 내가 다 가져간다! 모든 것을 사랑으로 해석하고 감동받는 당신은 진정한 '눈물의 여왕/왕자님'이군요. 길을 가다 낙엽만 봐도 시 한 편을 읊을 것 같은 로맨티시스트! 당신 옆엔 항상 따뜻한 보온병처럼 당신의 감성을 이해해 줄 짝꿍이 필요해요. '드라마 찐팬'인 당신은 연인과의 소소한 일상도 영화처럼 만들어낼 재주꾼이랍니다!"
             },
             'teto_pure': {
-                title: "논리 초월형 '팩트 폭격기' 테토 💣",
+                title: "논리 초월형 '팩트 폭격기' 테토 EMOJI_2",
                 description: "감성은 잠시 넣어둬, 나에겐 오직 팩트와 논리, 그리고 효율성뿐! 감성보다는 이성이 지배하는 당신은 '차가운 도시 남자/여자'의 표본입니다. 연애도 비즈니스처럼 계획하고 실행하는 당신은 어쩌면 완벽한 데이트 플래너일지도요? 계산기보다 정확한 당신의 매력을 알아봐 줄, 엉뚱 발랄한 파트너를 만나면 의외의 케미가 터질 수 있어요!"
             },
             'balanced_mixed': {
@@ -481,37 +498,37 @@
                 description: "감성과 이성 사이를 오가는 당신은 진정한 관계의 달인! 때로는 눈물짓게 만드는 공감 요정이다가, 결정적인 순간엔 칼 같은 이성으로 모두를 놀라게 하는 반전 매력의 소유자군요. 당신의 예측 불가능한 매력에 상대방은 헤어 나올 수 없을 거예요! 하지만 때로는 어떤 모습이 진짜 당신인지 혼란스러울 때도 있으니, 당신의 속마음을 알아줄 섬세한 상대를 만나면 좋겠어요."
             },
             'egen_with_realism': {
-                title: "'눈물 흘리면서도 짠테크하는' 현실 공감 에겐 👛",
+                title: "'눈물 흘리면서도 짠테크하는' 현실 공감 에겐 EMOJI_3",
                 description: "당신은 감성의 바다에서 헤엄치지만, 발끝은 언제나 단단한 땅에 닿아있는 현실주의자! 영화 속 이별 장면에 눈물을 펑펑 쏟다가도, 끝나자마자 '저 식당 파스타 비싸겠는데?'라고 생각하는 당신은, 뜨거운 가슴과 차가운 머리를 동시에 가진 매력적인 사람이에요. 로맨틱한 데이트를 꿈꾸지만, 예약 없으면 줄 안 서는 합리적인 선택을 하죠. 당신의 현실적인 면모까지 사랑해 줄 반전 매력의 소유자를 만나보세요!"
             },
             'teto_with_warmth': {
-                title: "'겉바속촉' 반전 매력 테토 🐿️",
+                title: "'겉바속촉' 반전 매력 테토 EMOJI_4",
                 description: "겉은 바삭한 차가운 이성의 갑옷을 입고 있지만, 속은 촉촉한 따뜻함으로 가득 찬 당신! 친구가 울면 논리적으로 '울지마, 심장이 1분 동안 37.8kcal를 소비해'라고 말하면서도, 다음 날 몰래 그 친구가 좋아하는 커피를 사다 놓는 유형이 바로 당신입니다. 감정 표현이 서툴러도 당신의 진심은 통하기 마련! 당신의 무심한 듯 섬세한 배려심을 알아봐 줄 눈치 빠른 파트너를 만나면 인생 역전 로맨스가 펼쳐질 거예요!"
             },
             'egen_extreme': {
-                title: "'단일 세포' 오직 한 길 에겐 🌸",
+                title: "'단일 세포' 오직 한 길 에겐 EMOJI_5",
                 description: "당신은 감성으로 대동단결된, 마치 촉각 세포로만 이루어진 것 같은 순수 에겐! 길거리에서 발 구르는 아이를 보면 함께 구르고 싶은 충동을 느끼죠. '이게 논리적으로 말이 되냐?'는 질문은 당신의 사전에 없어요. 오직 '마음이 시키는 대로!' 당신의 뜨거운 심장을 알아주고, 가끔은 냉철한 조언으로 현실로 데려와 줄 파트너를 만난다면 최강의 팀워크를 자랑할 거예요!"
             },
             'teto_extreme': {
-                title: "'단일 세포' 오직 한 길 테토 🤖",
+                title: "'단일 세포' 오직 한 길 테토 EMOJI_6",
                 description: "당신은 AI조차 혀를 내두를 완벽한 논리 회로! 오직 팩트와 데이터, 그리고 효율성만으로 이 세상을 살아가는 로봇 같은 테토입니다. '나 지금 되게 센치해...'라는 말에 '음, 혈액 검사 받아봐야 하는 것 아닌가?'라고 반응하는 당신. 하지만 의외로 당신의 계산적인 모습이 상대방에겐 신뢰감과 든든함으로 다가올 수 있어요. 당신의 철벽 같은 방패를 뚫고 들어올 용감한 감성형 파트너를 찾아보세요!"
             }
         };
 
         // 각 문항 하단에 들어갈 '솔로몬의 선택' 행사 설명 문장 배열
         const eventDescriptions = [
-            '📌 ‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
-            '📌 이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
-            '📌 누적 커플 수는 3년간 398쌍에 달한다.',
-            '📌 참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
-            '📌 뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
-            '📌 KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
-            '📌 로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
-            '📌 평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
-            '📌 다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
-            '📌 실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
-            '📌 신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
-            '📌 ‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
+            'EMOJI_7 ‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
+            'EMOJI_8 이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
+            'EMOJI_9 누적 커플 수는 3년간 398쌍에 달한다.',
+            'EMOJI_10 참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
+            'EMOJI_11 뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
+            'EMOJI_12 KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
+            'EMOJI_13 로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
+            'EMOJI_14 평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
+            'EMOJI_15 다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
+            'EMOJI_16 실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
+            'EMOJI_17 신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
+            'EMOJI_18 ‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
         ];
 
         // JS 로직
@@ -690,6 +707,9 @@
             shareOptionContainer.style.display = (shareOptionContainer.style.display === 'none' || shareOptionContainer.style.display === '') ? 'flex' : 'none';
         });
 
+        // 솔로몬 신청 링크 (별도의 변수로 정의하여 재사용)
+        const solemonApplyLink = "https://www.seongnam.go.kr/apply/view.do?appIdx=2987&currentPage=1";
+
         // 카카오톡 공유 기능
         shareKakaoBtn.addEventListener('click', () => {
             if (!Kakao.isInitialized()) {
@@ -703,7 +723,7 @@
                 objectType: 'feed',
                 content: {
                     title: `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}`,
-                    description: currentResult.description,
+                    description: `${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}`, // 설명에 신청 링크 추가
                     imageUrl: 'https://cdn.pixabay.com/photo/2016/11/22/19/25/emotions-1850125_1280.png', // 대표 이미지 URL
                     link: {
                         mobileWebUrl: window.location.href,
@@ -718,32 +738,43 @@
                             webUrl: window.location.href,
                         },
                     },
+                    {
+                        title: '솔로몬의 선택 신청하기', // 신청하기 버튼 추가
+                        link: {
+                            mobileWebUrl: solemonApplyLink,
+                            webUrl: solemonApplyLink,
+                        },
+                    }
                 ],
             });
         });
 
         // URL 복사 기능
         copyUrlBtn.addEventListener('click', () => {
+            const currentResult = results[getCalculatedResultKey()];
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}\n\n테스트 바로가기: ${window.location.href}`;
+            
             const el = document.createElement('textarea');
-            el.value = window.location.href;
+            el.value = shareText;
             document.body.appendChild(el);
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            alert('테스트 URL이 복사되었습니다!');
+            alert('테스트 URL과 솔로몬의 선택 신청 링크가 복사되었습니다!');
         });
 
         // Facebook 공유
         shareFacebookBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
-            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(`[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}`)}`;
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}`;
+            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`;
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
 
         // LINE 공유
         shareLineBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
-            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n${window.location.href}`;
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}\n\n${window.location.href}`;
             const shareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(shareText)}`;
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
@@ -751,7 +782,7 @@
         // X (Twitter) 공유
         shareXBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
-            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title} - ${currentResult.description}`;
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title} - ${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}`;
             const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`;
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
