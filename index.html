@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>솔로몬의 선택: 내 연애 호르몬은 에겐? 테토?</title>
+    <title>솔로몬의 선택: 내 연애 성향은 에겐? 테토?</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
         * {
@@ -225,78 +225,87 @@
             color: #888;
         }
 
-        /* 반응형 디자인 */
+        /* 모바일 최적화 스타일 */
         @media (max-width: 600px) {
-    .container {
-        max-width: 100%;
-        padding: 15px;
-        margin: 0 auto;
-    }
-    
-    .intro, .question-container, .result-container {
-        padding: 15px;
-        aspect-ratio: 1/1; /* 정사각형 비율 적용 */
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-    }
-    
-    h1 {
-        font-size: 20px; /* 제목 크기 축소 */
-        margin-bottom: 15px;
-    }
-    
-    p {
-        font-size: 14px; /* 본문 크기 축소 */
-        line-height: 1.5;
-        margin-bottom: 10px;
-    }
-    
-    .start-btn {
-        padding: 10px 20px;
-        font-size: 16px;
-    }
-    
-    .question {
-        font-size: 16px; /* 질문 크기 축소 */
-        margin-bottom: 15px;
-    }
-    
-    .option {
-        padding: 10px 15px;
-        font-size: 14px; /* 옵션 텍스트 크기 축소 */
-        margin-bottom: 10px;
-    }
-    
-    .prev-btn, .next-btn {
-        padding: 8px 15px;
-        font-size: 14px;
-    }
-    
-    .result-title {
-        font-size: 18px; /* 결과 제목 크기 축소 */
-    }
-    
-    .result-description {
-        font-size: 14px; /* 결과 설명 크기 축소 */
-    }
-    
-    .share-btn, .restart-btn {
-        padding: 8px 15px;
-        font-size: 14px;
-        width: auto; /* 버튼 너비 자동 조절 */
-        display: inline-block;
-    }
-    
-    /* 공유 버튼 가로 배치 확실히 */
-    .share-container {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: center;
-        gap: 10px;
-    }
-}
+            body {
+                padding: 10px; /* 바디 여백도 줄임 */
+            }
+            .container {
+                max-width: 100%;
+                padding: 15px;
+            }
+
+            /* 정사각형 비율 및 중앙 정렬 */
+            .intro, .question-container, .result-container {
+                padding: 15px;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                min-height: 500px; /* 최소 높이 지정 (내용이 적을 때 정사각형 유지) */
+                aspect-ratio: 1/1; /* 정사각형 비율 적용 시도 (컨텐츠가 많으면 깨질 수 있음) */
+            }
+            /* 컨텐츠가 너무 많아 정사각형 비율 유지가 어렵다면 max-height 대신 overflow 스크롤을 고려해야 함 */
+            
+            h1 {
+                font-size: 24px; /* 제목 크기 축소 */
+                margin-bottom: 15px;
+            }
+            
+            p {
+                font-size: 14px; /* 본문 크기 축소 */
+                line-height: 1.5;
+                margin-bottom: 10px;
+            }
+            
+            .start-btn {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+            
+            .question {
+                font-size: 16px; /* 질문 크기 축소 */
+                margin-bottom: 15px;
+            }
+            
+            .options {
+                margin-bottom: 20px; /* 옵션 컨테이너 여백 줄임 */
+            }
+            .option {
+                padding: 10px 15px;
+                font-size: 14px; /* 옵션 텍스트 크기 축소 */
+                margin-bottom: 10px;
+            }
+            
+            .prev-btn, .next-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+            }
+            
+            .result-title {
+                font-size: 20px; /* 결과 제목 크기 축소 */
+            }
+            
+            .result-description {
+                font-size: 14px; /* 결과 설명 크기 축소 */
+                text-align: left; /* 모바일에서 설명 왼쪽 정렬로 가독성 높임 */
+            }
+            
+            .share-btn, .restart-btn {
+                padding: 8px 15px;
+                font-size: 14px;
+                width: auto; /* 버튼 너비 자동 조절 */
+                display: inline-block;
+            }
+            
+            /* 공유 버튼 가로 배치 확실히 */
+            .share-container {
+                display: flex;
+                flex-direction: row;
+                flex-wrap: wrap; /* 필요한 경우 줄바꿈 허용 */
+                justify-content: center;
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -304,9 +313,9 @@
         <!-- 인트로 화면 -->
         <div class="intro" id="intro">
             <h1><span>솔로몬의 선택:</span> 내 연애 성향은 에겐? 테토?</h1>
-            <p>이 테스트는 당신 안의 <strong>에겐</strong>과 <strong>테토</strong> 비율을 알아보는 연애 성향 분석입니다.</p>
+            <p>이 테스트는 당신 안의 <strong>에겐(감성/공감 특성)</strong>과 <strong>테토(논리/이성 특성)</strong> 비율을 알아보는 유머러스한 분석입니다.</p>
             <p>사랑 앞에서 내가 왜 이러지? 궁금했다면, 이제 알아볼 시간!</p>
-            <p><strong>12가지 문항</strong>에 솔직하게 답하고, 당신의 연애 성향을 확인해보세요.</p>
+            <p><strong>12가지 문항</strong>에 솔직하게 답하고, 당신의 연애 성향 타입을 확인해보세요.</p>
             <button class="start-btn" id="startBtn">테스트 시작하기</button>
         </div>
 
@@ -336,7 +345,7 @@
         </div>
 
         <footer>
-            © Made By JINO
+            © 2025 솔로몬의 선택. 모든 권리 보유.
         </footer>
     </div>
 
@@ -365,7 +374,7 @@
         let egenScore = 0;
         let tetoScore = 0;
 
-        // 질문 목록
+        // 질문 목록 (여기에 질문을 다 포함시켜드렸습니다)
         const questions = [
             {
                 question: "1. 연인과 싸우다가 상대방이 '그때 그 파스타집에서 말이야...'라고 운을 띄웠을 때, 당신의 반응은?",
@@ -448,19 +457,19 @@
                 question: "12. 길을 걷다 어딘가에 홀린 듯 비틀거리는 친구를 발견했다. 당신의 외침은?",
                 options: [
                     { text: "ㅇ...야... 괜찮아? ㅠㅠ 너 혹시... 사랑에 빠졌니?!!! (감격) 축하해! 누가 그 운명의 상대야?!", type: "egen" },
-                    { text: "수분 섭취 부족 또는 혈당 저하. 즉시 편의점에서 이온 음료와 초콜릿을 구매해야 한다. 동선은 이쪽이 최단거리다.", type: "teto" }
+                    { text: "수분 섭치 부족 또는 혈당 저하. 즉시 편의점에서 이온 음료와 초콜릿을 구매해야 한다. 동선은 이쪽이 최단거리다.", type: "teto" }
                 ]
             }
         ];
 
-        // 결과 정의
+        // 결과 정의 (여기에도 내용을 다 포함시켜드렸습니다)
         const results = {
             'egen_pure': {
-                title: "감성 과몰입형 '촉촉한 눈망울' 에겐 EMOJI_0",
+                title: "감성 과몰입형 '촉촉한 눈망울' 에겐 💧",
                 description: "이 세상 감성은 내가 다 가져간다! 모든 것을 사랑으로 해석하고 감동받는 당신은 진정한 '눈물의 여왕/왕자님'이군요. 길을 가다 낙엽만 봐도 시 한 편을 읊을 것 같은 로맨티시스트! 당신 옆엔 항상 따뜻한 보온병처럼 당신의 감성을 이해해 줄 짝꿍이 필요해요. '드라마 찐팬'인 당신은 연인과의 소소한 일상도 영화처럼 만들어낼 재주꾼이랍니다!"
             },
             'teto_pure': {
-                title: "논리 초월형 '팩트 폭격기' 테토 EMOJI_1",
+                title: "논리 초월형 '팩트 폭격기' 테토 💣",
                 description: "감성은 잠시 넣어둬, 나에겐 오직 팩트와 논리, 그리고 효율성뿐! 감성보다는 이성이 지배하는 당신은 '차가운 도시 남자/여자'의 표본입니다. 연애도 비즈니스처럼 계획하고 실행하는 당신은 어쩌면 완벽한 데이트 플래너일지도요? 계산기보다 정확한 당신의 매력을 알아봐 줄, 엉뚱 발랄한 파트너를 만나면 의외의 케미가 터질 수 있어요!"
             },
             'balanced_mixed': {
@@ -468,19 +477,19 @@
                 description: "감성과 이성 사이를 오가는 당신은 진정한 관계의 달인! 때로는 눈물짓게 만드는 공감 요정이다가, 결정적인 순간엔 칼 같은 이성으로 모두를 놀라게 하는 반전 매력의 소유자군요. 당신의 예측 불가능한 매력에 상대방은 헤어 나올 수 없을 거예요! 하지만 때로는 어떤 모습이 진짜 당신인지 혼란스러울 때도 있으니, 당신의 속마음을 알아줄 섬세한 상대를 만나면 좋겠어요."
             },
             'egen_with_realism': {
-                title: "'눈물 흘리면서도 짠테크하는' 현실 공감 에겐 EMOJI_2",
+                title: "'눈물 흘리면서도 짠테크하는' 현실 공감 에겐 👛",
                 description: "당신은 감성의 바다에서 헤엄치지만, 발끝은 언제나 단단한 땅에 닿아있는 현실주의자! 영화 속 이별 장면에 눈물을 펑펑 쏟다가도, 끝나자마자 '저 식당 파스타 비싸겠는데?'라고 생각하는 당신은, 뜨거운 가슴과 차가운 머리를 동시에 가진 매력적인 사람이에요. 로맨틱한 데이트를 꿈꾸지만, 예약 없으면 줄 안 서는 합리적인 선택을 하죠. 당신의 현실적인 면모까지 사랑해 줄 반전 매력의 소유자를 만나보세요!"
             },
             'teto_with_warmth': {
-                title: "'겉바속촉' 반전 매력 테토 EMOJI_3",
+                title: "'겉바속촉' 반전 매력 테토 🐿️",
                 description: "겉은 바삭한 차가운 이성의 갑옷을 입고 있지만, 속은 촉촉한 따뜻함으로 가득 찬 당신! 친구가 울면 논리적으로 '울지마, 심장이 1분 동안 37.8kcal를 소비해'라고 말하면서도, 다음 날 몰래 그 친구가 좋아하는 커피를 사다 놓는 유형이 바로 당신입니다. 감정 표현이 서툴러도 당신의 진심은 통하기 마련! 당신의 무심한 듯 섬세한 배려심을 알아봐 줄 눈치 빠른 파트너를 만나면 인생 역전 로맨스가 펼쳐질 거예요!"
             },
             'egen_extreme': {
-                title: "'단일 세포' 오직 한 길 에겐 EMOJI_4",
+                title: "'단일 세포' 오직 한 길 에겐 🌸",
                 description: "당신은 감성으로 대동단결된, 마치 촉각 세포로만 이루어진 것 같은 순수 에겐! 길거리에서 발 구르는 아이를 보면 함께 구르고 싶은 충동을 느끼죠. '이게 논리적으로 말이 되냐?'는 질문은 당신의 사전에 없어요. 오직 '마음이 시키는 대로!' 당신의 뜨거운 심장을 알아주고, 가끔은 냉철한 조언으로 현실로 데려와 줄 파트너를 만난다면 최강의 팀워크를 자랑할 거예요!"
             },
             'teto_extreme': {
-                title: "'단일 세포' 오직 한 길 테토 EMOJI_5",
+                title: "'단일 세포' 오직 한 길 테토 🤖",
                 description: "당신은 AI조차 혀를 내두를 완벽한 논리 회로! 오직 팩트와 데이터, 그리고 효율성만으로 이 세상을 살아가는 로봇 같은 테토입니다. '나 지금 되게 센치해...'라는 말에 '음, 혈액 검사 받아봐야 하는 것 아닌가?'라고 반응하는 당신. 하지만 의외로 당신의 계산적인 모습이 상대방에겐 신뢰감과 든든함으로 다가올 수 있어요. 당신의 철벽 같은 방패를 뚫고 들어올 용감한 감성형 파트너를 찾아보세요!"
             }
         };
@@ -494,7 +503,7 @@
             // YOUR_APP_KEY를 카카오 개발자 센터에서 발급받은 실제 앱 키로 교체해주세요!
             // 호호님의 앱키가 없다면 아래 '테스트용' 키를 사용하거나, 새 앱을 만들어 발급받으세요.
             // 권장: 웹 플랫폼 설정에 도메인 추가 (localhost 또는 배포될 실제 도메인)
-            Kakao.init('YOUR_JAVASCRIPT_APP_KEY');
+            Kakao.init('YOUR_JAVASCRIPT_APP_KEY'); // <-- 여기에 카카오 앱 키를 입력해주세요!
             console.log(Kakao.isInitialized()); // true가 나오면 초기화 성공
         }
 
@@ -541,19 +550,16 @@
                 index: parseInt(selectedOptionDiv.dataset.index)
             };
 
-            // 마지막 질문인 경우 자동 계산 & 결과 표시
-            if (questionIndex === questions.length - 1) {
-                setTimeout(() => { // 선택 시 즉시 이동하기 위해 setTimeout
-                    calculateAndDisplayResult();
-                }, 300); // 0.3초 딜레이 후 결과 페이지로 이동
-            }
+            // 다음 버튼 활성화 (선택했을 때 바로 넘어갈 수 있도록)
+            nextBtn.disabled = false;
         }
 
         // 네비게이션 버튼 업데이트
         function updateNavigationButtons() {
             prevBtn.disabled = (currentQuestionIndex === 0);
             nextBtn.textContent = (currentQuestionIndex === questions.length - 1) ? '결과보기' : '다음';
-            nextBtn.disabled = !userAnswers[currentQuestionIndex]; // 현재 질문에 답해야 다음으로 넘어갈 수 있음
+            // nextBtn.disabled = !userAnswers[currentQuestionIndex]; // 현재 질문에 답해야 다음으로 넘어갈 수 있음 (옵션 선택 시 활성화되도록 변경)
+            nextBtn.disabled = (userAnswers[currentQuestionIndex] === undefined); // 답변을 선택하지 않았으면 비활성화
         }
 
         // 진행률 바 업데이트
@@ -577,20 +583,20 @@
 
             let resultKey;
             // 결과 유형 로직 (호호님과 논의했던 기준에 따라 매핑)
-            if (egenScore === 12) {
+            // (총 12문항 기준)
+            if (egenScore === 12) { // 에겐 12, 테토 0
                 resultKey = 'egen_extreme';
-            } else if (tetoScore === 12) {
+            } else if (tetoScore === 12) { // 테토 12, 에겐 0
                 resultKey = 'teto_extreme';
-            } else if (egenScore >= 10) { // 10, 11
+            } else if (egenScore >= 10) { // 에겐 10, 11
                 resultKey = 'egen_pure';
-            } else if (tetoScore >= 10) { // 10, 11
+            } else if (tetoScore >= 10) { // 테토 10, 11
                 resultKey = 'teto_pure';
-            } else if (egenScore >= 8) { // 8, 9
+            } else if (egenScore >= 8) { // 에겐 8, 9 (테토 3, 4) - 현실 공감 에겐
                 resultKey = 'egen_with_realism';
-            } else if (tetoScore >= 8) { // 8, 9
+            } else if (tetoScore >= 8) { // 테토 8, 9 (에겐 3, 4) - 겉바속촉 테토
                 resultKey = 'teto_with_warmth';
-            } else { // 0~7
-                // 에겐과 테토 점수가 비슷하게 분포된 경우 (예: 5~7점)
+            } else { // 그 외 나머지 (ex: 5-7점, 6-6점 등) -> 밸런스 혼합형
                 resultKey = 'balanced_mixed';
             }
             
@@ -600,7 +606,7 @@
 
             // 화면 전환
             questionSection.style.display = 'none';
-            resultSection.style.display = 'block';
+            resultSection.style.display = 'flex'; /* flexbox로 변경하여 내부 콘텐츠 중앙 정렬 및 정사각형 유지 */
         }
 
         // 테스트 재시작
@@ -610,19 +616,20 @@
             egenScore = 0;
             tetoScore = 0;
             resultSection.style.display = 'none';
-            introSection.style.display = 'block';
+            introSection.style.display = 'flex'; /* flexbox로 변경 */
             progressBar.style.width = '0%'; // 프로그레스 바 초기화
-            // 선택된 옵션들 초기화 (다음 시작 시 문제가 안생기도록)
+            // 질문 페이지의 옵션 'selected' 클래스 초기화 (다음 시작 시 문제가 안생기도록)
             Array.from(optionsContainer.children).forEach(option => {
                 option.classList.remove('selected');
             });
+            updateNavigationButtons(); // 재시작 시 버튼 상태 초기화
         }
 
         // 이벤트 리스너 설정
         startBtn.addEventListener('click', () => {
             initKakao(); // 테스트 시작 시 카카오 SDK 초기화
             introSection.style.display = 'none';
-            questionSection.style.display = 'block';
+            questionSection.style.display = 'flex'; /* flexbox로 변경 */
             displayQuestion(currentQuestionIndex);
         });
 
@@ -633,7 +640,7 @@
         });
 
         nextBtn.addEventListener('click', () => {
-            if (userAnswers[currentQuestionIndex]) { // 현재 질문에 답을 했는지 확인
+            if (userAnswers[currentQuestionIndex] !== undefined) { // 현재 질문에 답을 했는지 확인 (undefined가 아니면 됨)
                 if (currentQuestionIndex < questions.length - 1) {
                     displayQuestion(currentQuestionIndex + 1);
                 } else {
@@ -658,7 +665,7 @@
             Kakao.Share.sendDefault({
                 objectType: 'feed',
                 content: {
-                    title: `[솔로몬의 선택] 내 연애 호르몬 타입은? ${currentResult.title}`,
+                    title: `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}`,
                     description: currentResult.description,
                     imageUrl: 'https://cdn.pixabay.com/photo/2016/11/22/19/25/emotions-1850125_1280.png', // 호호님의 행사나 테스트를 대표할 만한 이미지 URL로 변경해주세요!
                     link: {
