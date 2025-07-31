@@ -42,7 +42,7 @@
             align-items: center;
             position: relative;
         }
-        /* 페이지 제목 스타일 */
+        /* 페이지 제목 스타일 (컨테이너 외부 상단 고정) */
         .page-title {
             position: absolute;
             top: 20px;
@@ -60,7 +60,7 @@
 
         /* 인트로 화면 */
         #intro {
-            display: flex;
+            display: flex; /* 초기에는 인트로 화면을 표시 */
         }
         h1 {
             font-size: 18px;
@@ -76,13 +76,15 @@
         /* 질문 화면 */
         .question-container {
             text-align: left;
-            padding-top: 50px;
+            padding-top: 50px; /* 상단 고정 제목과 겹치지 않도록 여백 */
         }
         .question {
             font-size: 18px;
             font-weight: bold;
             margin-bottom: 15px;
-            line-height: 1.4;
+            line-height: 1.5; /* 줄 간격 좀 더 넓게 */
+            word-break: keep-all; /* 단어 단위 줄바꿈 (한글) */
+            overflow-wrap: break-word; /* 긴 단어도 줄바꿈 */
         }
         .options {
             margin-bottom: 20px;
@@ -229,8 +231,9 @@
 
         /* Made by */
         .made-by {
-            font-size: 9px;
-            color: #ccc;
+            font-size: 11px; /* 폰트 크기 키움 */
+            color: #b0b0b0; /* 살짝 더 진하게 */
+            font-weight: bold; /* 더 진하게 */
             margin-top: 15px;
             padding-top: 10px;
             border-top: 1px dashed #eee;
@@ -300,7 +303,7 @@
                 padding: 6px 12px;
             }
             .made-by {
-                font-size: 8px;
+                font-size: 10px; /* 모바일에서도 Made by 글씨 크기 유지 */
             }
         }
     </style>
@@ -708,7 +711,7 @@
         });
 
         // 솔로몬 신청 링크 (별도의 변수로 정의하여 재사용)
-        const solemonApplyLink = "https://www.seongnam.go.kr/apply/view.do?appIdx=2987&currentPage=1";
+        const SOLO_MON_APPLY_LINK = "https://www.seongnam.go.kr/apply/view.do?appIdx=2987&currentPage=1";
 
         // 카카오톡 공유 기능
         shareKakaoBtn.addEventListener('click', () => {
@@ -723,7 +726,7 @@
                 objectType: 'feed',
                 content: {
                     title: `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}`,
-                    description: `${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}`, // 설명에 신청 링크 추가
+                    description: `${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${SOLO_MON_APPLY_LINK}`, // 설명에 신청 링크 추가
                     imageUrl: 'https://cdn.pixabay.com/photo/2016/11/22/19/25/emotions-1850125_1280.png', // 대표 이미지 URL
                     link: {
                         mobileWebUrl: window.location.href,
@@ -737,14 +740,7 @@
                             mobileWebUrl: window.location.href,
                             webUrl: window.location.href,
                         },
-                    },
-                    {
-                        title: '솔로몬의 선택 신청하기', // 신청하기 버튼 추가
-                        link: {
-                            mobileWebUrl: solemonApplyLink,
-                            webUrl: solemonApplyLink,
-                        },
-                    }
+                    } // 솔로몬의 선택 신청 버튼은 카카오톡 설명에 텍스트 링크로 통합되었으므로, 여기서는 테스트 시작하기 버튼만 유지
                 ],
             });
         });
@@ -752,7 +748,7 @@
         // URL 복사 기능
         copyUrlBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
-            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}\n\n테스트 바로가기: ${window.location.href}`;
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${SOLO_MON_APPLY_LINK}\n\n테스트 바로가기: ${window.location.href}`;
             
             const el = document.createElement('textarea');
             el.value = shareText;
@@ -760,13 +756,13 @@
             el.select();
             document.execCommand('copy');
             document.body.removeChild(el);
-            alert('테스트 URL과 솔로몬의 선택 신청 링크가 복사되었습니다!');
+            alert('테스트 내용과 솔로몬의 선택 신청 링크가 복사되었습니다!');
         });
 
         // Facebook 공유
         shareFacebookBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
-            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}`;
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${SOLO_MON_APPLY_LINK}\n\n`; // 본문 끝에 링크 추가
             const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(shareText)}`;
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
@@ -774,7 +770,7 @@
         // LINE 공유
         shareLineBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
-            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}\n\n${window.location.href}`;
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${SOLO_MON_APPLY_LINK}\n\n${window.location.href}`;
             const shareUrl = `https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(shareText)}`;
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
@@ -782,7 +778,7 @@
         // X (Twitter) 공유
         shareXBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
-            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title} - ${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${solemonApplyLink}`;
+            const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title} - ${currentResult.description}\n\n솔로몬의 선택 참가 신청: ${SOLO_MON_APPLY_LINK}`; // 텍스트 끝에 링크 추가
             const shareUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(window.location.href)}`;
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
