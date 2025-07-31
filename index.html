@@ -3,45 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- 제목 변경 및 카카오톡 SDK 위치 조정 -->
     <title>솔로몬의 선택: 내 연애 성향은 에겐? 테토?</title>
     <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
     <script>
-      Kakao.init('c2788857d449e26583d58b707ee0abb0'); // 호호님이 제공해주신 JavaScript 키
+      Kakao.init('c2788857d449e26583d58b707ee0abb0');
     </script>
 
     <style>
         /* 기본 폰트와 스타일 */
         body {
-            font-family: "Arial", "Noto Sans KR", sans-serif; /* Noto Sans KR 추가 */
+            font-family: "Arial", "Noto Sans KR", sans-serif;
             background-color: #f5f5f5;
             margin: 0;
             padding: 0;
             text-align: center;
             color: #333;
-            display: flex; /* 화면 중앙 정렬을 위해 body에도 flex 적용 */
+            display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh; /* 최소 높이 설정 (화면 전체 높이) */
+            min-height: 100vh;
         }
         /* 공통 컨테이너 스타일 - 정사각형 크기 */
         .container {
             background: #fff;
-            margin: 20px auto; /* 상하 마진 조정 */
+            margin: 20px auto;
             width: 420px;
-            height: 420px;
-            overflow-y: hidden; /* 세로 스크롤 제거 */
+            height: auto;
+            min-height: 420px; /* 컨테이너 최소 높이 (정사각형 모양 유지를 위함) */
+            max-height: 600px; /* 컨테이너 최대 높이 (내용이 넘치지 않도록) */
+            overflow-y: auto; /* 내용이 넘치면 스크롤 */
             padding: 70px 20px 30px 20px;
             box-sizing: border-box;
             border-radius: 10px;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            display: none; /* JS로 제어 */
+            display: none;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             position: relative;
         }
-        /* 페이지 제목 스타일 */
+        /* 페이지 제목 스타일 (컨테이너 외부 상단 고정) */
         .page-title {
             position: absolute;
             top: 20px;
@@ -49,7 +50,7 @@
             transform: translateX(-50%);
             width: calc(100% - 40px);
             text-align: center;
-            font-size: 16px; /* 글씨 크기 줄임 */
+            font-size: 16px;
             color: #e1326f;
             margin: 0;
             padding: 0;
@@ -62,37 +63,37 @@
             display: flex; /* 초기에는 인트로 화면을 표시 */
         }
         h1 {
-            font-size: 18px; /* 제목 크기 줄임 */
+            font-size: 18px;
             margin-bottom: 10px;
         }
         /* 본문 p 태그 스타일 */
         p {
-            font-size: 13px; /* 기본 문단 글씨 크기 줄임 */
-            line-height: 1.4; /* 줄 간격 조정 */
-            margin-bottom: 15px; /* 기본 여백 */
+            font-size: 13px;
+            line-height: 1.4;
+            margin-bottom: 15px;
         }
 
         /* 질문 화면 */
         .question-container {
-            text-align: left; /* 질문과 옵션은 왼쪽 정렬 */
-            padding-top: 50px; /* 제목과 겹치지 않도록 조정 */
+            text-align: left;
+            padding-top: 50px; /* 상단 고정 제목과 겹치지 않도록 여백 */
         }
         .question {
-            font-size: 18px; /* 질문 텍스트 크기 줄임 */
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 15px; /* 여백 조정 */
+            margin-bottom: 15px;
             line-height: 1.4;
         }
         .options {
-            margin-bottom: 20px; /* 옵션 컨테이너 여백 */
+            margin-bottom: 20px;
         }
         .option {
             display: block;
             background-color: #f1f1f1;
-            border-radius: 5px; /* 좀 더 둥근 모서리 */
-            padding: 10px 15px; /* 패딩 조정 */
-            margin-bottom: 8px; /* 옵션 간 간격 */
-            font-size: 13px; /* 옵션 글씨 크기 줄임 */
+            border-radius: 5px;
+            padding: 10px 15px;
+            margin-bottom: 8px;
+            font-size: 13px;
             cursor: pointer;
             transition: background-color 0.2s, transform 0.1s;
         }
@@ -106,13 +107,13 @@
             font-weight: bold;
             border: 1px solid #ff1493;
         }
-        /* 버튼 스타일 */
+        /* 버튼 공통 스타일 */
         button {
             background-color: #ff3c7e;
             color: white;
             border: none;
-            padding: 8px 16px; /* 버튼 패딩 줄임 */
-            font-size: 13px; /* 버튼 글씨 크기 줄임 */
+            padding: 8px 16px;
+            font-size: 13px;
             border-radius: 20px;
             cursor: pointer;
             margin: 5px;
@@ -121,18 +122,18 @@
         button:hover {
             background-color: #e1326f;
         }
-        .start-btn {
-            padding: 10px 20px; /* 시작 버튼은 좀 더 크게 */
+        .start-btn { /* 시작하기 버튼은 좀 더 크게 */
+            padding: 10px 20px;
             font-size: 14px;
         }
         .navigation {
             display: flex;
             justify-content: space-between;
-            margin-top: 15px; /* 네비게이션 버튼 위 여백 */
+            margin-top: 15px;
         }
         .prev-btn, .next-btn {
             flex-grow: 1; /* 너비를 동일하게 */
-            margin: 0 5px; /* 버튼 사이 간격 */
+            margin: 0 5px;
         }
         .prev-btn:disabled, .next-btn:disabled {
             background-color: #cccccc;
@@ -141,19 +142,19 @@
 
         /* 결과 화면 */
         .result-title {
-            font-size: 18px; /* 결과 제목 크기 줄임 */
+            font-size: 18px;
             font-weight: bold;
             margin-bottom: 15px;
             color: #e1326f;
         }
         .result-description {
-            font-size: 13px; /* 결과 설명 글씨 크기 줄임 */
+            font-size: 13px;
             line-height: 1.5;
             margin-bottom: 20px;
-            text-align: center; /* 설명 중앙 정렬 */
+            text-align: center;
         }
-        .comment {
-            font-size: 11px; /* 코멘트 글씨 크기 줄임 */
+        .comment { /* 인트로 페이지 하단 코멘트 */
+            font-size: 11px;
             color: #777;
             position: relative; 
             margin-top: 15px;
@@ -162,38 +163,47 @@
         }
         /* 각 문항 아래에 들어갈 이벤트 설명 텍스트 */
         .event-description-text {
-            font-size: 11px; /* 푸터 내용보다 살짝 크게 */
+            font-size: 11px;
             color: #888;
-            margin-top: 15px; /* 상단 여백 추가 */
+            margin-top: 15px;
             line-height: 1.3;
-            text-align: center; /* 중앙 정렬 */
+            text-align: center;
         }
 
-        /* 공유 메뉴 */
-        .share-container { /* 기존 share-menu 역할 */
-            margin-top: 15px;
+        /* 결과 페이지 버튼 나란히 배치 (공유/재시작) */
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+
+        /* 공유 옵션 메뉴 (초기 숨김) */
+        .share-container {
+            margin-top: 10px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 5px; /* 아이템 간 간격 줄임 */
+            gap: 5px;
+            margin-bottom: 15px;
         }
-        .share-btn { /* 기존 share-menu-item 역할 */
-            flex: 0 0 auto; /* 내용에 따라 유연하게 */
+        .share-btn {
+            flex: 0 0 auto;
             margin: 2px;
             white-space: nowrap;
             min-width: fit-content;
-            font-size: 11px; /* 글씨 크기 줄임 */
-            padding: 6px 10px; /* 패딩 조정 */
-            border-radius: 15px; /* 좀 더 둥근 버튼 */
-            background-color: #6c757d; /* 공유 버튼은 좀 더 차분한 색 */
+            font-size: 11px;
+            padding: 6px 10px;
+            border-radius: 15px;
+            background-color: #6c757d; /* 공유 버튼 색상 */
         }
         .share-btn:hover {
             background-color: #5a6268;
         }
 
-        /* 결과 페이지 하단 추가 섹션 */
+        /* 결과 페이지 하단 신청 섹션 */
         .apply-section {
-            margin-top: 25px; /* 상단 여백 */
+            margin-top: 25px;
             padding-top: 20px;
             border-top: 1px solid #eee;
         }
@@ -217,49 +227,14 @@
             background-color: #ff3c7e;
         }
 
-        /* Made by */
+        /* Made by JINO */
         .made-by {
             font-size: 9px;
             color: #ccc;
             margin-top: 15px;
             padding-top: 10px;
-            border-top: 1px dashed #eee; /* 점선으로 구분 */
+            border-top: 1px dashed #eee; /* 점선 구분선 */
         }
-
-        /* 진행률 바 */
-        .progress-container {
-            width: 100%;
-            background-color: #e9ecef;
-            border-radius: 5px;
-            height: 8px; /* 높이 줄임 */
-            margin-bottom: 15px;
-            overflow: hidden;
-        }
-        .progress-bar {
-            height: 100%;
-            width: 0;
-            background-color: #ff1493;
-            border-radius: 5px;
-            transition: width 0.3s ease-in-out;
-        }
-
-        /* 푸터 (각 페이지 컨테이너 내) */
-        footer {
-            margin-top: auto; /* flex 컨테이너 내에서 맨 아래로 밀착 */
-            padding-top: 15px; /* 상단 패딩 추가 */
-            font-size: 10px; /* 푸터 글씨 더 줄임 */
-            color: #aaa;
-            text-align: center;
-            border-top: 1px solid #eee; /* 구분선 추가 */
-            padding-bottom: 5px; /* 하단 패딩 */
-        }
-        footer p { /* 푸터 내 p 태그에 대한 스타일 조정 */
-            font-size: 9px; /* 푸터 내용은 더 작게 */
-            line-height: 1.2;
-            margin-bottom: 3px;
-            color: #888;
-        }
-
 
         /* 모바일 반응형 */
         @media (max-width: 450px) { /* 420px 컨테이너에 맞춰 미디어 쿼리 조정 */
@@ -268,12 +243,14 @@
             }
             .container {
                 width: 95vw; /* 화면 너비의 95% 사용 */
-                height: 95vw; /* 너비에 맞춘 정사각형 유지 */
+                height: auto; /* 모바일에서는 높이 자동 조정으로 변경 */
+                min-height: 95vw; /* 너비에 맞춘 최소 정사각형 */
+                max-height: 600px; /* 컨텐츠 많을 때 스크롤되도록 최대 높이 제한 */
                 margin: 0 auto;
                 padding: 50px 15px 20px 15px; /* 패딩 조정 */
             }
             .page-title {
-                font-size: 14px; /* 더 작은 화면에서는 더 줄임 */
+                font-size: 14px;
             }
             h1 {
                 font-size: 16px;
@@ -297,9 +274,6 @@
             .share-btn, .restart-btn, button {
                 font-size: 12px;
                 padding: 6px 10px;
-            }
-            footer p { /* 모바일 푸터 내용 글씨 크기 */
-                font-size: 8px;
             }
             .apply-section p {
                 font-size: 10px;
@@ -330,10 +304,6 @@
             <br>
             "본 테스트는 오락용이며, 실제 과학적 근거와는 무관합니다."
         </div>
-        <!-- 인트로 페이지 푸터 내용 완전히 제거 -->
-        <footer>
-            <!-- 굳이 넣을 내용이 없다면 비워두거나 작은 카피라이트 문구만 넣어도 됩니다. -->
-        </footer>
     </div>
 
     <!-- 질문 화면 -->
@@ -348,10 +318,6 @@
             <button class="prev-btn" id="prevBtn">이전</button>
             <button class="next-btn" id="nextBtn">다음</button>
         </div>
-        <!-- 질문 페이지 푸터 내용 완전히 제거 -->
-        <footer>
-            <!-- 내용이 없는 푸터는 비워둡니다. -->
-        </footer>
     </div>
 
     <!-- 결과 화면 -->
@@ -359,8 +325,12 @@
         <div class="result-title" id="resultTitle"></div>
         <div class="result-description" id="resultDescription"></div>
         
-        <!-- 내 결과 공유하기 버튼 -->
-        <button class="share-my-result-btn" id="shareMyResultBtn">내 결과 공유하기</button>
+        <!-- 버튼 나란히 배치 -->
+        <div class="button-container">
+            <button class="share-my-result-btn" id="shareMyResultBtn">내 결과 공유하기</button>
+            <button class="restart-btn" id="restartBtn">다시 테스트하기</button>
+        </div>
+        
         <!-- 공유 메뉴 (초기에는 숨겨짐) -->
         <div class="share-container" id="shareOptionContainer" style="display: none;">
             <button class="share-btn" id="copyUrl">링크 복사</button>
@@ -369,8 +339,6 @@
             <button class="share-btn" id="shareLine">라인</button>
             <button class="share-btn" id="shareX">X (트위터)</button>
         </div>
-        
-        <button class="restart-btn" id="restartBtn">다시 테스트하기</button>
 
         <div class="apply-section">
             <p>내 이상형을 만나고 싶다면?</p>
@@ -378,9 +346,6 @@
             <a href="https://www.seongnam.go.kr/apply/view.do?appIdx=2987&currentPage=1" target="_blank">행사 신청하러 가기</a>
         </div>
         <div class="made-by">Made by JINO</div>
-        <footer>
-            <!-- 내용이 없는 푸터는 비워둡니다. -->
-        </footer>
     </div>
 
     <script>
@@ -405,7 +370,7 @@
         const shareKakaoBtn = document.getElementById('shareKakao');
         const shareFacebookBtn = document.getElementById('shareFacebook');
         const shareLineBtn = document.getElementById('shareLine');
-        const shareXBtn = document.getElementById('shareX');
+        const shareXBtn = document = document.getElementById('shareX');
 
 
         let currentQuestionIndex = 0;
@@ -413,7 +378,7 @@
         let egenScore = 0;
         let tetoScore = 0;
 
-        // 질문 목록 (모두 포함되어 있습니다)
+        // 질문 목록 (아리까리 버전 12개)
         const questions = [
             {
                 question: "1. 애인이 밤새 직접 만들었다며 삐뚤빼뚤한 코바늘 인형을 건넸을 때, 당신의 반응은?",
@@ -501,7 +466,7 @@
             }
         ];
 
-        // 결과 정의 (모두 포함되어 있습니다)
+        // 결과 정의 (호호님과 논의했던 결과들 모두 포함)
         const results = {
             'egen_pure': {
                 title: "감성 과몰입형 '촉촉한 눈망울' 에겐 💧",
@@ -533,39 +498,38 @@
             }
         };
 
-        // 새로 추가된 '솔로몬의 선택' 행사 설명 문장 배열
+        // 각 문항 하단에 들어갈 '솔로몬의 선택' 행사 설명 문장 배열
         const eventDescriptions = [
-            '📌‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
-            '📌이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
-            '📌누적 커플 수는 3년간 398쌍에 달한다.',
-            '📌참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
-            '📌뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
-            '📌KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
-            '📌로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
-            '📌평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
-            '📌다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
-            '📌실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
-            '📌신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
-            '📌‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
+            '📌 ‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
+            '📌 이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
+            '📌 누적 커플 수는 3년간 398쌍에 달한다.',
+            '📌 참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
+            '📌 뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
+            '📌 KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
+            '📌 로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
+            '📌 평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
+            '📌 다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
+            '📌 실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
+            '📌 신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
+            '📌 ‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
         ];
 
         // JS 로직
-        // 테스트 재시작
+        // 테스트 재시작 함수
         function restartTest() {
             currentQuestionIndex = 0;
             userAnswers = [];
             egenScore = 0;
             tetoScore = 0;
             shareOptionContainer.style.display = 'none'; // 공유 옵션 숨기기
-            shareMyResultBtn.style.display = 'block'; // '내 결과 공유하기' 버튼 다시 표시
             resultSection.style.display = 'none';
-            introSection.style.display = 'flex'; /* flexbox로 변경 */
+            introSection.style.display = 'flex'; /* 인트로 화면 표시 */
             progressBar.style.width = '0%'; // 프로그레스 바 초기화
             // 질문 페이지의 옵션 'selected' 클래스 초기화
             const allOptions = document.querySelectorAll('.option');
             allOptions.forEach(option => option.classList.remove('selected'));
             updateNavigationButtons(); // 재시작 시 버튼 상태 초기화
-            // 컨테이너 스크롤 상단으로 이동 (결과 페이지에서 스크롤이 내려가 있을 수 있으므로)
+            // 컨테이너 스크롤 상단으로 이동 (내용이 길어서 스크롤이 생겼을 경우를 대비)
             introSection.scrollTop = 0;
             questionSection.scrollTop = 0;
             resultSection.scrollTop = 0;
@@ -597,19 +561,19 @@
 
             // 각 문항 하단에 이벤트 설명 문장 추가
             // 기존에 추가된 설명이 있다면 제거 후 다시 추가 (이전/다음 버튼으로 이동 시)
-            let existingDesc = document.querySelector('.event-description-text');
+            let existingDesc = questionSection.querySelector('.event-description-text'); // questionSection 내에서 찾음
             if (existingDesc) {
                 existingDesc.remove();
             }
 
             const eventDescParagraph = document.createElement('p');
             eventDescParagraph.classList.add('event-description-text');
-            // 문항 개수가 설명 개수보다 많을 경우 (예: 질문 12개, 설명 12개일 때)
-            // 인덱스를 활용하여 매칭되는 설명이 있으면 표시
-            if (eventDescriptions[currentQuestionIndex] && currentQuestionIndex < questions.length) {
+            // 문항 인덱스에 맞는 설명이 있고, 설명 배열 범위를 넘지 않을 경우에만 표시
+            if (currentQuestionIndex < eventDescriptions.length) {
                 eventDescParagraph.textContent = eventDescriptions[currentQuestionIndex];
-                // optionsContainer의 부모(questionContainer)에, optionsContainer 다음에 삽입
-                optionsContainer.parentNode.insertBefore(eventDescParagraph, optionsContainer.nextElementSibling);
+                // eventDescParagraph를 navigation div 앞에 삽입
+                const navigationDiv = questionSection.querySelector('.navigation');
+                questionSection.insertBefore(eventDescParagraph, navigationDiv);
             }
             
             updateNavigationButtons();
@@ -628,14 +592,14 @@
                 type: selectedOptionDiv.dataset.type,
                 index: parseInt(selectedOptionDiv.dataset.index)
             };
-            nextBtn.disabled = false; // 선택 시 다음 버튼 활성화
+            nextBtn.disabled = false; // 옵션 선택 시 다음 버튼 활성화
         }
 
         // 네비게이션 버튼 업데이트
         function updateNavigationButtons() {
             prevBtn.disabled = (currentQuestionIndex === 0);
             nextBtn.textContent = (currentQuestionIndex === questions.length - 1) ? '결과보기' : '다음';
-            nextBtn.disabled = (userAnswers[currentQuestionIndex] === undefined); // 답변 안 했으면 비활성화
+            nextBtn.disabled = (userAnswers[currentQuestionIndex] === undefined); // 답변하지 않았으면 비활성화
         }
 
         // 진행률 바 업데이트
@@ -657,16 +621,15 @@
                 }
             });
 
-            const finalResult = results[getCalculatedResultKey()]; // 현재 결과 타입에 해당하는 결과 객체를 가져옵니다.
+            const finalResult = results[getCalculatedResultKey()];
             resultTitle.innerHTML = finalResult.title;
             resultDescription.innerHTML = finalResult.description;
 
             // 질문 페이지의 설명 제거 (결과 페이지로 넘어갈 때)
-            let existingDesc = document.querySelector('.event-description-text');
+            let existingDesc = questionSection.querySelector('.event-description-text');
             if (existingDesc) {
                 existingDesc.remove();
             }
-
 
             // 화면 전환
             questionSection.style.display = 'none';
@@ -695,11 +658,10 @@
             return 'balanced_mixed';
         }
 
-
         // 이벤트 리스너 설정
         startBtn.addEventListener('click', () => {
             introSection.style.display = 'none';
-            questionSection.style.display = 'flex'; /* flexbox로 변경 */
+            questionSection.style.display = 'flex';
             displayQuestion(currentQuestionIndex);
         });
 
@@ -778,7 +740,7 @@
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
 
-        // LINE 공유 (URL Scheme 방식)
+        // LINE 공유
         shareLineBtn.addEventListener('click', () => {
             const currentResult = results[getCalculatedResultKey()];
             const shareText = `[솔로몬의 선택] 내 연애 성향 타입은? ${currentResult.title}\n${currentResult.description}\n\n${window.location.href}`;
@@ -794,11 +756,9 @@
             window.open(shareUrl, '_blank', 'width=600,height=400');
         });
 
-        // 페이지 로드 시 초기화
+        // 페이지 로드 시 초기화 (display: none으로 초기화하고 인트로만 display:flex)
         window.addEventListener('load', () => {
-            // 모든 .container 요소를 초기에 숨깁니다 (JavaScript가 제어)
             document.querySelectorAll('.container').forEach(el => el.style.display = 'none');
-            // 인트로 섹션만 보이게 합니다.
             introSection.style.display = 'flex';
         });
     </script>
