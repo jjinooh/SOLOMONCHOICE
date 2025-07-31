@@ -88,7 +88,7 @@
             line-height: 1.7; /* 줄 간격 좀 더 넓게 */
             word-break: keep-all; /* 단어 단위 줄바꿈 (한글) */
             overflow-wrap: break-word; /* 긴 단어도 줄바꿈 */
-            white-space: normal; /* **여기 수정!** pre-line 대신 normal로 자동 줄바꿈 사용 */
+            white-space: normal; /* pre-line 대신 normal로 자동 줄바꿈 사용 */
         }
         .options {
             margin-bottom: 20px;
@@ -103,7 +103,7 @@
             cursor: pointer;
             transition: background-color 0.2s, transform 0.1s;
             word-break: keep-all; /* 단어 단위 줄바꿈 (한글) */
-            white-space: normal; /* **여기 수정!** pre-line 대신 normal로 자동 줄바꿈 사용 */
+            white-space: normal; /* pre-line 대신 normal로 자동 줄바꿈 사용 */
             line-height: 1.5; /* 줄 간격 추가 */
         }
         .option:hover {
@@ -496,7 +496,7 @@
         ];
 
         // 결과 정의 (호호님과 논의했던 결과들 모두 포함)
-        // **결과 타입별 이모지 추가**
+        // **결과 타입별 이모지 직접 삽입**
         const results = {
             'egen_pure': {
                 title: "감성 과몰입형 '촉촉한 눈망울' 에겐 EMOJI_5",
@@ -507,42 +507,42 @@
                 description: "감성은 잠시 넣어둬, 나에겐 오직 팩트와 논리, 그리고 효율성뿐! 감성보다는 이성이 지배하는 당신은 '차가운 도시 남자/여자'의 표본입니다. 연애도 비즈니스처럼 계획하고 실행하는 당신은 어쩌면 완벽한 데이트 플래너일지도요? 계산기보다 정확한 당신의 매력을 알아봐 줄, 엉뚱 발랄한 파트너를 만나면 의외의 케미가 터질 수 있어요!"
             },
             'balanced_mixed': {
-                title: "반전 매력 뿜뿜 '밀당 고수' 에그또 (EgTo) ✨",
+                title: "반전 매력 뿜뿜 '밀당 고수' 에그또 (EgTo) ✨EMOJI_7", // ✨EMOJI_8 적용
                 description: "감성과 이성 사이를 오가는 당신은 진정한 관계의 달인! 때로는 눈물짓게 만드는 공감 요정이다가, 결정적인 순간엔 칼 같은 이성으로 모두를 놀라게 하는 반전 매력의 소유자군요. 당신의 예측 불가능한 매력에 상대방은 헤어 나올 수 없을 거예요! 하지만 때로는 어떤 모습이 진짜 당신인지 혼란스러울 때도 있으니, 당신의 속마음을 알아줄 섬세한 상대를 만나면 좋겠어요."
             },
             'egen_with_realism': {
-                title: "'눈물 흘리면서도 짠테크하는' 현실 공감 에겐 EMOJI_7EMOJI_8",
+                title: "'눈물 흘리면서도 짠테크하는' 현실 공감 에겐 EMOJI_9EMOJI_10",
                 description: "당신은 감성의 바다에서 헤엄치지만, 발끝은 언제나 단단한 땅에 닿아있는 현실주의자! 영화 속 이별 장면에 눈물을 펑펑 쏟다가도, 끝나자마자 '저 식당 파스타 비싸겠는데?'라고 생각하는 당신은, 뜨거운 가슴과 차가운 머리를 동시에 가진 매력적인 사람이에요. 로맨틱한 데이트를 꿈꾸지만, 예약 없으면 줄 안 서는 합리적인 선택을 하죠. 당신의 현실적인 면모까지 사랑해 줄 반전 매력의 소유자를 만나보세요!"
             },
             'teto_with_warmth': {
-                title: "'겉바속촉' 반전 매력 테토 EMOJI_9EMOJI_10",
+                title: "'겉바속촉' 반전 매력 테토 EMOJI_11EMOJI_12",
                 description: "겉은 바삭한 차가운 이성의 갑옷을 입고 있지만, 속은 촉촉한 따뜻함으로 가득 찬 당신! 친구가 울면 논리적으로 '울지마, 심장이 1분 동안 37.8kcal를 소비해'라고 말하면서도, 다음 날 몰래 그 친구가 좋아하는 커피를 사다 놓는 유형이 바로 당신입니다. 감정 표현이 서툴러도 당신의 진심은 통하기 마련! 당신의 무심한 듯 섬세한 배려심을 알아봐 줄 눈치 빠른 파트너를 만나면 인생 역전 로맨스가 펼쳐질 거예요!"
             },
             'egen_extreme': {
-                title: "'단일 세포' 오직 한 길 에겐 EMOJI_11",
+                title: "'단일 세포' 오직 한 길 에겐 EMOJI_13",
                 description: "당신은 감성으로 대동단결된, 마치 촉각 세포로만 이루어진 것 같은 순수 에겐! 길거리에서 발 구르는 아이를 보면 함께 구르고 싶은 충동을 느끼죠. '이게 논리적으로 말이 되냐?'는 질문은 당신의 사전에 없어요. 오직 '마음이 시키는 대로!' 당신의 뜨거운 심장을 알아주고, 가끔은 냉철한 조언으로 현실로 데려와 줄 파트너를 만난다면 최강의 팀워크를 자랑할 거예요!"
             },
             'teto_extreme': {
-                title: "'단일 세포' 오직 한 길 테토 EMOJI_12",
+                title: "'단일 세포' 오직 한 길 테토 EMOJI_14",
                 description: "당신은 AI조차 혀를 내두를 완벽한 논리 회로! 오직 팩트와 데이터, 그리고 효율성만으로 이 세상을 살아가는 로봇 같은 테토입니다. '나 지금 되게 센치해...'라는 말에 '음, 혈액 검사 받아봐야 하는 것 아닌가?'라고 반응하는 당신. 하지만 의외로 당신의 계산적인 모습이 상대방에겐 신뢰감과 든든함으로 다가올 수 있어요. 당신의 철벽 같은 방패를 뚫고 들어올 용감한 감성형 파트너를 찾아보세요!"
             }
         };
 
         // 각 문항 하단에 들어갈 '솔로몬의 선택' 행사 설명 문장 배열
-        // **이모지 추가**
+        // **EMOJI_15 이모지로 통일**
         const eventDescriptions = [
-            'EMOJI_13 ‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
-            '⭐ 이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
-            'EMOJI_14 누적 커플 수는 3년간 398쌍에 달한다.',
-            'EMOJI_15 참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
-            'EMOJI_16 뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
-            'EMOJI_17 KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
-            'EMOJI_18 로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
-            'EMOJI_19 평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
-            '⬆️ 다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
-            '✅ 실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
-            'EMOJI_20 신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
-            'EMOJI_21 ‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
+            'EMOJI_16 ‘솔로몬의 선택’은 성남시 청년들이 모여 새로운 인연을 맺는 만남 주선 행사다.',
+            'EMOJI_17 이 행사는 실제 커플이 탄생하고 결혼·출산까지 이어진 사례를 보유하고 있다.',
+            'EMOJI_18 누적 커플 수는 3년간 398쌍에 달한다.',
+            'EMOJI_19 참가자들의 평균 매칭률은 약 49.1%로 높은 수준을 유지하고 있다.',
+            'EMOJI_20 뉴욕타임스, BBC, 로이터 등에서 보도한 공공 만남 행사로는 드문 사례다.',
+            'EMOJI_21 KAIST AI 대학원과 협력한 매칭 프로그램으로 조 편성이 이뤄진다.',
+            'EMOJI_22 로테이션 대화, 연애 코칭 등 다양한 프로그램이 마련되어 있다.',
+            'EMOJI_23 평균 경쟁률은 약 6:1로, 높은 관심을 받고 있는 행사다.',
+            'EMOJI_24 다수의 지자체가 벤치마킹하는 대표적인 만남 행사다.',
+            'EMOJI_25 실제 참가자들로부터 높은 만족도 평가를 받고 있다.',
+            'EMOJI_26 신청 기간 내 지원자 중 100명을 무작위로 선정해 참가 기회를 제공한다.',
+            'EMOJI_27 ‘솔로몬의 선택’은 2023년부터 현재까지 지속 운영되고 있다.'
         ];
 
         // JS 로직
@@ -571,13 +571,13 @@
             if (index < 0 || index >= questions.length) return;
 
             currentQuestionIndex = index;
-            questionText.textContent = questions[currentQuestionIndex].question; // **textContent 사용으로 변경 (수동 <br> 태그 제거했으므로)**
+            questionText.textContent = questions[currentQuestionIndex].question; // textContent 사용
             optionsContainer.innerHTML = ''; // 옵션 초기화
 
             questions[currentQuestionIndex].options.forEach((option, i) => {
                 const optionDiv = document.createElement('div');
                 optionDiv.classList.add('option');
-                optionDiv.textContent = option.text; // **textContent 사용으로 변경**
+                optionDiv.textContent = option.text; // textContent 사용
                 optionDiv.dataset.type = option.type; // egen 또는 teto 타입 저장
                 optionDiv.dataset.index = i; // 옵션 인덱스 저장
 
@@ -758,7 +758,7 @@
                         },
                     },
                     {
-                        title: 'EMOJI_22 솔로몬의 선택 신청하기 EMOJI_23',
+                        title: 'EMOJI_28 솔로몬의 선택 신청하기 EMOJI_29',
                         link: {
                             mobileWebUrl: SOLO_MON_APPLY_LINK,
                             webUrl: SOLO_MON_APPLY_LINK,
