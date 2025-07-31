@@ -227,50 +227,86 @@
 
         /* 반응형 디자인 */
         @media (max-width: 600px) {
-            .container {
-                padding: 15px;
-            }
-            h1 {
-                font-size: 24px;
-            }
-            p {
-                font-size: 16px;
-            }
-            .start-btn {
-                padding: 12px 30px;
-                font-size: 18px;
-            }
-            .question {
-                font-size: 18px;
-            }
-            .option {
-                font-size: 16px;
-                padding: 12px 15px;
-            }
-            .prev-btn, .next-btn {
-                font-size: 16px;
-                padding: 10px 20px;
-            }
-            .result-title {
-                font-size: 22px;
-            }
-            .result-description {
-                font-size: 16px;
-            }
-            .share-btn {
-                width: 100%; /* 모바일에서 공유 버튼 너비 100% */
-            }
-        }
+    .container {
+        max-width: 100%;
+        padding: 15px;
+        margin: 0 auto;
+    }
+    
+    .intro, .question-container, .result-container {
+        padding: 15px;
+        aspect-ratio: 1/1; /* 정사각형 비율 적용 */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    h1 {
+        font-size: 20px; /* 제목 크기 축소 */
+        margin-bottom: 15px;
+    }
+    
+    p {
+        font-size: 14px; /* 본문 크기 축소 */
+        line-height: 1.5;
+        margin-bottom: 10px;
+    }
+    
+    .start-btn {
+        padding: 10px 20px;
+        font-size: 16px;
+    }
+    
+    .question {
+        font-size: 16px; /* 질문 크기 축소 */
+        margin-bottom: 15px;
+    }
+    
+    .option {
+        padding: 10px 15px;
+        font-size: 14px; /* 옵션 텍스트 크기 축소 */
+        margin-bottom: 10px;
+    }
+    
+    .prev-btn, .next-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+    
+    .result-title {
+        font-size: 18px; /* 결과 제목 크기 축소 */
+    }
+    
+    .result-description {
+        font-size: 14px; /* 결과 설명 크기 축소 */
+    }
+    
+    .share-btn, .restart-btn {
+        padding: 8px 15px;
+        font-size: 14px;
+        width: auto; /* 버튼 너비 자동 조절 */
+        display: inline-block;
+    }
+    
+    /* 공유 버튼 가로 배치 확실히 */
+    .share-container {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: center;
+        gap: 10px;
+    }
+}
     </style>
 </head>
 <body>
     <div class="container">
         <!-- 인트로 화면 -->
         <div class="intro" id="intro">
-            <h1><span>솔로몬의 선택:</span> 내 연애 호르몬은 에겐? 테토?</h1>
-            <p>이 테스트는 당신 안의 <strong>에겐(감성/공감 호르몬)</strong>과 <strong>테토(논리/이성 호르몬)</strong> 비율을 알아보는 유머러스한 성향 분석입니다.</p>
+            <h1><span>솔로몬의 선택:</span> 내 연애 성향은 에겐? 테토?</h1>
+            <p>이 테스트는 당신 안의 <strong>에겐</strong>과 <strong>테토</strong> 비율을 알아보는 연애 성향 분석입니다.</p>
             <p>사랑 앞에서 내가 왜 이러지? 궁금했다면, 이제 알아볼 시간!</p>
-            <p><strong>12가지 문항</strong>에 솔직하게 답하고, 당신의 연애 호르몬 타입을 확인해보세요.</p>
+            <p><strong>12가지 문항</strong>에 솔직하게 답하고, 당신의 연애 성향을 확인해보세요.</p>
             <button class="start-btn" id="startBtn">테스트 시작하기</button>
         </div>
 
@@ -300,7 +336,7 @@
         </div>
 
         <footer>
-            © 2025 솔로몬의 선택. 모든 권리 보유.
+            © Made By JINO
         </footer>
     </div>
 
