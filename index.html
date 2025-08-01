@@ -366,93 +366,91 @@ h1 {
         let tetoScore = 0;
 
         const questions = [
-            {
-                question: "1. 애인이 밤새 만든 코바늘 인형을 건넸을 때 당신은?",
-                options: [
-                    { text: "우와 감동이야… 진짜 고마워!", type: "egen" },
-                    { text: "몇 시간 걸렸어? 다음은 뭘 만들 거야?", type: "teto" }
-                ]
-            },
-            {
-                question: "2. 친구가 '현타 왔다'고 말할 때 당신은?",
-                options: [
-                    { text: "괜찮아? 무슨 일이야?", type: "egen" },
-                    { text: "무슨 원인이 있었는지 생각해봤어?", type: "teto" }
-                ]
-            },
-            {
-                question: "3. 영화에서 주인공이 이별할 때 당신은?",
-                options: [
-                    { text: "마음 아프다... 이 장면 너무 슬퍼.", type: "egen" },
-                    { text: "이별 개연성 있었네. 현실적 결말이지.", type: "teto" }
-                ]
-            },
-            {
-                question: "4. 애인이 '나 살찐 것 같아'라고 할 때 당신은?",
-                options: [
-                    { text: "내 눈엔 항상 예뻐~♥", type: "egen" },
-                    { text: "그럼 같이 식단 조절 해보자!", type: "teto" }
-                ]
-            },
-            {
-                question: "5. 데이트 날 '오늘 뭐 할까?' 라고 할 때 당신은?",
-                options: [
-                    { text: "그날 기분 보고 유동적으로 정하지!", type: "egen" },
-                    { text: "스케줄 우선순위부터 정해야지!", type: "teto" }
-                ]
-            },
-            {
-                question: "6. 친구와 싸웠을 때 가장 먼저 드는 생각은?",
-                options: [
-                    { text: "내가 상처 준 건 아닐까?", type: "egen" },
-                    { text: "왜 싸웠는지 분석부터 해야지.", type: "teto" }
-                ]
-            }
+         {
+            question: "1. 애인이 당신과의 사진으로 영상을 편집해서 보냈을 때 당신은?",
+            options: [
+              { text: "우와 감동이야… 진짜 고마워!", type: "egen" },
+              { text: "몇 시간 걸렸어? 자막 폰트 바꾸면 완벽할 듯?", type: "teto" }
+            ]
+          },
+          {
+            question: "2. 친구가 '현타 왔다'고 말할 때 당신은?",
+            options: [
+              { text: "그럴 줄 알았어. 내가 얘기했지?", type: "teto" },
+              { text: "괜찮아? 무슨 일이야?", type: "egen" }
+            ]
+          },
+          {
+            question: "3. 영화에서 주인공이 이별할 때 당신은?",
+            options: [
+              { text: "마음 아프다... 이 장면 너무 슬퍼.", type: "egen" },
+              { text: "이별 개연성 있었네. 현실적 결말이지.", type: "teto" }
+            ]
+          },
+          {
+            question: "4. 애인이 '나 살찐 것 같아'라고 할 때 당신은?",
+            options: [
+              { text: "그럼 같이 식단 조절 해보자!", type: "teto" },
+              { text: "내 눈엔 항상 예뻐~♥", type: "egen" }
+            ]
+          },
+          {
+            question: "5. 데이트 날 '오늘 뭐 할까?' 라고 할 때 당신은?",
+            options: [
+              { text: "그날 기분 보고 유동적으로 정하지!", type: "egen" },
+              { text: "스케줄 우선순위부터 정해야지!", type: "teto" }
+            ]
+          },
+          {
+            question: "6. 친구와 싸웠을 때 가장 먼저 드는 생각은?",
+            options: [
+              { text: "왜 싸웠는지 분석부터 해야지.", type: "teto" },
+              { text: "내가 상처 준 건 아닐까?", type: "egen" }
+            ]
+          },
+          {
+            question: "7. 애인이 과감한 데이트룩을 입고 나왔을 때 당신은?",
+            options: [
+              { text: "스타일이 바뀌었네? 어떤 의도였을까?", type: "teto" },
+              { text: "헐 완전 새롭고 매력적이야!", type: "egen" }
+            ]
+          },
+          {
+            question: "8. 모임 정산 후 138,500원이 남았다면?",
+            options: [
+              { text: "소액 기부하거나 커피 돌릴까?", type: "egen" },
+              { text: "남은 금액은 다음 회비에서 공제!", type: "teto" }
+            ]
+          },
+          {
+            question: "9. 새로운 도전이 너무 힘들 땐?",
+            options: [
+              { text: "지금 전략으로는 비효율이야. 수정하자.", type: "teto" },
+              { text: "응원해주는 사람들 생각하며 다시 힘내!", type: "egen" }
+            ]
+          },
+          {
+            question: "10. 해외여행 숙소를 고를 때 가장 중요한 건?",
+            options: [
+              { text: "위치, 교통, 동선 최적화!", type: "teto" },
+              { text: "분위기와 감성, 뷰가 최고지!", type: "egen" }
+            ]
+          },
+          {
+            question: "11. 애인이 서프라이즈 이벤트 준비 중이라면?",
+            options: [
+              { text: "실패할까 걱정돼... 모른 척 해주자.", type: "egen" },
+              { text: "행동 패턴이 이상한데? 예측해보자.", type: "teto" }
+            ]
+          },
+          {
+            question: "12. 넋 나간 친구를 발견했을 때 당신의 외침은?",
+            options: [
+              { text: "지금 위험해 보여. 안전한 곳으로 가자.", type: "teto" },
+              { text: "무슨 일 있어? 말해봐. 내가 옆에 있어줄게.", type: "egen" }
+            ]
+          }
         ];
-questions.push(
-            {
-                question: "7. 애인이 과감한 데이트룩을 입고 나왔을 때 당신은?",
-                options: [
-                    { text: "헐 완전 새롭고 매력적이야!", type: "egen" },
-                    { text: "스타일이 바뀌었네? 어떤 의도였을까?", type: "teto" }
-                ]
-            },
-            {
-                question: "8. 모임 정산 후 138,500원이 남았다면?",
-                options: [
-                    { text: "소액 기부하거나 커피 돌릴까?", type: "egen" },
-                    { text: "남은 금액은 다음 회비에서 공제!", type: "teto" }
-                ]
-            },
-            {
-                question: "9. 새로운 도전이 너무 힘들 땐?",
-                options: [
-                    { text: "응원해주는 사람들 생각하며 다시 힘내!", type: "egen" },
-                    { text: "지금 전략으로는 비효율이야. 수정하자.", type: "teto" }
-                ]
-            },
-            {
-                question: "10. 해외여행 숙소를 고를 때 가장 중요한 건?",
-                options: [
-                    { text: "분위기와 감성, 뷰가 최고지!", type: "egen" },
-                    { text: "위치, 교통, 동선 최적화!", type: "teto" }
-                ]
-            },
-            {
-                question: "11. 애인이 서프라이즈 이벤트 준비 중이라면?",
-                options: [
-                    { text: "실패할까 걱정돼... 모른 척 해주자.", type: "egen" },
-                    { text: "행동 패턴이 이상한데? 예측해보자.", type: "teto" }
-                ]
-            },
-            {
-                question: "12. 넋 나간 친구를 발견했을 때 당신의 외침은?",
-                options: [
-                    { text: "무슨 일 있어? 말해봐. 내가 옆에 있어줄게.", type: "egen" },
-                    { text: "지금 위험해 보여. 안전한 곳으로 가자.", type: "teto" }
-                ]
-            }
-        );
 
         const results = {
             'egen_pure': {
@@ -585,13 +583,13 @@ const eventDescriptions = [
         }
 
         function getResultKey() {
-            if (egenScore === 12) return 'egen_extreme';
-            if (tetoScore === 12) return 'teto_extreme';
-            if (egenScore >= 10) return 'egen_pure';
-            if (tetoScore >= 10) return 'teto_pure';
-            if (egenScore >= 8) return 'egen_with_realism';
-            if (tetoScore >= 8) return 'teto_with_warmth';
-            return 'balanced_mixed';
+            if (egenScore >= 11) return 'egen_extreme';
+            if (egenScore >= 9) return 'egen_pure';
+            if (egenScore === 8) return 'egen_with_realism';
+            if (egenScore === 6) return 'balanced_mixed';
+            if (egenScore >= 4) return 'teto_with_warmth';
+            if (egenScore >= 2) return 'teto_pure';
+         return 'teto_extreme';
         }
 // 시작 버튼 클릭 시
         startBtn.addEventListener('click', () => {
