@@ -29,7 +29,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 100vh;
+            min-height: 10vh;
         }
         .container {
             background: #fff;
@@ -290,10 +290,8 @@ h1 {
     </style>
 </head>
 <body>
-    <!-- 상단 페이지 제목 -->
     <div class="page-title">솔로몬의 선택: 내 연애 성향은 에겐? 테토?</div>
 
-    <!-- 인트로 화면 -->
     <div class="container" id="intro">
         <h1>솔로몬의 선택 💘: 내 연애 성향은 에겐 or 테토?</h1>
         <p>사랑 앞에서 내가 왜 이러지? 궁금했다면, 이제 알아볼 시간!</p>
@@ -305,7 +303,6 @@ h1 {
         </div>
     </div>
 
-    <!-- 질문 화면 -->
     <div class="container" id="questionContainer">
         <div class="progress-container">
             <div class="progress-bar" id="progressBar"></div>
@@ -314,7 +311,6 @@ h1 {
         <div class="options" id="optionsContainer"></div>
     </div>
 
-    <!-- 결과 화면 -->
     <div class="container" id="resultContainer">
         <div class="result-title" id="resultTitle"></div>
         <div class="result-description" id="resultDescription"></div>
@@ -348,8 +344,6 @@ h1 {
         const startBtn = document.getElementById('startBtn');
         const questionText = document.getElementById('questionText');
         const optionsContainer = document.getElementById('optionsContainer');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
         const progressBar = document.getElementById('progressBar');
         const resultTitle = document.getElementById('resultTitle');
         const resultDescription = document.getElementById('resultDescription');
@@ -522,16 +516,14 @@ const eventDescriptions = [
             desc.classList.add('event-description-text');
             if (index < eventDescriptions.length) {
                 desc.textContent = eventDescriptions[index];
-                const nav = questionSection.querySelector('.navigation');
-                questionSection.insertBefore(desc, nav);
+                questionSection.appendChild(desc);
             }
 
-            updateNavigationButtons();
             updateProgressBar();
             questionSection.scrollTop = 0;
         }
 
-       function selectOption(selectedDiv, index) {
+        function selectOption(selectedDiv, index) {
             Array.from(optionsContainer.children).forEach(option => {
                 option.classList.remove('selected');
             });
@@ -541,20 +533,14 @@ const eventDescriptions = [
                 type: selectedDiv.dataset.type,
                 index: parseInt(selectedDiv.dataset.index)
             };
-
-    // 자동 다음 질문으로 이동
+            
             setTimeout(() => {
-                if (index < questions.length - 1) {
-                    displayQuestion(index + 1);
+                if (currentQuestionIndex < questions.length - 1) {
+                    displayQuestion(currentQuestionIndex + 1);
                 } else {
                     calculateAndDisplayResult();
                 }
-            }, 300); // 살짝 딜레이 줘서 선택 효과 보여줌
-        }
-        function updateNavigationButtons() {
-            prevBtn.disabled = currentQuestionIndex === 0;
-            nextBtn.textContent = (currentQuestionIndex === questions.length - 1) ? '결과보기' : '다음';
-            nextBtn.disabled = userAnswers[currentQuestionIndex] === undefined;
+            }, 300); // 300ms delay to see the selection highlight
         }
 
         function updateProgressBar() {
@@ -598,25 +584,7 @@ const eventDescriptions = [
             questionSection.style.display = 'flex';
             displayQuestion(currentQuestionIndex);
         });
-
-        prevBtn.addEventListener('click', () => {
-            if (currentQuestionIndex > 0) {
-                displayQuestion(currentQuestionIndex - 1);
-            }
-        });
-
-        nextBtn.addEventListener('click', () => {
-            if (userAnswers[currentQuestionIndex] !== undefined) {
-                if (currentQuestionIndex < questions.length - 1) {
-                    displayQuestion(currentQuestionIndex + 1);
-                } else {
-                    calculateAndDisplayResult();
-                }
-            } else {
-                alert('답변을 선택해주세요!');
-            }
-        });
-
+        
         restartBtn.addEventListener('click', () => {
             currentQuestionIndex = 0;
             userAnswers = [];
