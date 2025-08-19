@@ -312,10 +312,6 @@ h1 {
         </div>
         <div class="question" id="questionText"></div>
         <div class="options" id="optionsContainer"></div>
-        <div class="navigation">
-            <button class="prev-btn" id="prevBtn">이전</button>
-            <button class="next-btn" id="nextBtn">다음</button>
-        </div>
     </div>
 
     <!-- 결과 화면 -->
@@ -535,7 +531,7 @@ const eventDescriptions = [
             questionSection.scrollTop = 0;
         }
 
-        function selectOption(selectedDiv, index) {
+       function selectOption(selectedDiv, index) {
             Array.from(optionsContainer.children).forEach(option => {
                 option.classList.remove('selected');
             });
@@ -545,9 +541,16 @@ const eventDescriptions = [
                 type: selectedDiv.dataset.type,
                 index: parseInt(selectedDiv.dataset.index)
             };
-            nextBtn.disabled = false;
-        }
 
+    // 자동 다음 질문으로 이동
+            setTimeout(() => {
+                if (index < questions.length - 1) {
+                    displayQuestion(index + 1);
+                } else {
+                    calculateAndDisplayResult();
+                }
+            }, 300); // 살짝 딜레이 줘서 선택 효과 보여줌
+        }
         function updateNavigationButtons() {
             prevBtn.disabled = currentQuestionIndex === 0;
             nextBtn.textContent = (currentQuestionIndex === questions.length - 1) ? '결과보기' : '다음';
