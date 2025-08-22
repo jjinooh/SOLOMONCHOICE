@@ -571,11 +571,11 @@ const eventDescriptions = [
         }
 
         function getResultKey() {
-          if (egenScore >= 11) return 'egen_extreme';         // 에겐 극단
-          if (egenScore >= 9) return 'egen_pure';             // 에겐 순수
-          if (egenScore >= 6) return 'balanced_mixed';        // 균형형
-          if (egenScore >= 3) return 'teto_pure';             // 테토 순수
-          return 'teto_extreme';                              // 테토 극단
+           if (egenScore >= 12) return 'egen_extreme'; // 12점 이상
+           if (egenScore >= 9) return 'egen_pure';      // 9, 10, 11점
+           if (egenScore >= 6) return 'balanced_mixed'; // 6, 7, 8점
+           if (egenScore >= 3) return 'teto_pure';      // 3, 4, 5점
+           return 'teto_extreme';                     // 3점 미만
         }
 // 시작 버튼 클릭 시
         startBtn.addEventListener('click', () => {
