@@ -571,27 +571,16 @@ const eventDescriptions = [
         }
 
         function getResultKey() {
-  // 예시: tetoScore와 egenScore를 비교하여 최종 결과 결정
-  // 총 12문제이므로, 점수가 6을 기준으로 나뉠 수 있음
-  
   if (egenScore >= 11) {
-    return 'egen_extreme'; // 11-12점: 순도 100% 에겐
-  } else if (egenScore >= 10) {
-    return 'egen_pure';    // 10점: 말랑 감성 에겐
+    return 'egen_extreme';   // 11~12점
   } else if (egenScore >= 8) {
-    // egen이 8~9점일 때, teto는 3~4점. 에겐 성향이 더 강함
-    return 'egen_pure';
-  } else if (egenScore >= 6) {
-    // egen이 6~7점일 때, teto는 5~6점. 이 경우 에그또가 적합
-    return 'balanced_mixed';
-  } else if (egenScore >= 3) {
-    // egen이 3~5점일 때, teto는 7~9점. 테토 성향이 더 강함
-    return 'teto_pure';
-  } else if (egenScore >= 1) {
-    return 'teto_extreme'; // 1~2점: 냉철한 이성형 테토
+    return 'egen_pure';      // 8~10점
+  } else if (egenScore >= 5) {
+    return 'balanced_mixed'; // 5~7점
+  } else if (egenScore >= 2) {
+    return 'teto_pure';      // 2~4점
   } else {
-    // egen이 0점일 때
-    return 'teto_extreme'; // 0점: 냉철한 이성형 테토
+    return 'teto_extreme';   // 0~1점
   }
 }
 // 시작 버튼 클릭 시
